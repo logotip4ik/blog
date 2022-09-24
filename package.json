@@ -1,0 +1,33 @@
+{
+  "name": "blog-vite",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 3000",
+    "build": "vite-ssg build",
+    "preview": "vite preview"
+  },
+  "browserslist": "last 5 versions, not dead, not IE 11",
+  "dependencies": {
+    "@fontsource/courier-prime": "^4.5.8",
+    "@vueuse/head": "^0.7.12",
+    "markdown-retro": "^0.0.1",
+    "normalize.css": "^8.0.1",
+    "sass": "^1.55.0",
+    "shiki": "^0.11.1",
+    "unplugin-auto-import": "^0.11.2",
+    "unplugin-vue-components": "^0.22.7",
+    "vite-plugin-pages": "^0.26.0",
+    "vite-plugin-vue-markdown": "^0.22.1",
+    "vite-ssg": "^0.20.2",
+    "vite-svg-loader": "^3.6.0",
+    "vue": "^3.2.37",
+    "vue-router": "^4.1.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.1.0",
+    "prettier": "^2.7.1",
+    "vite": "^3.1.0"
+  }
+}
