@@ -35,6 +35,7 @@ export default defineConfig(async () => {
 
       AutoImport({
         imports: ["vue", "vue-router", "@vueuse/head"],
+        dirs: ["src/composables"],
         vueTemplate: true,
         dts: true,
       }),
