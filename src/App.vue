@@ -1,24 +1,24 @@
-<script setup>
-const router = useRouter();
-
-// router.s
-</script>
+<script setup></script>
 
 <template>
+  <Background />
+
   <Navbar />
 
-  <Transition name="page">
-    <router-view />
-  </Transition>
+  <RouterView v-slot="{ Component }">
+    <Transition name="page" mode="out-in">
+      <Component :is="Component" />
+    </Transition>
+  </RouterView>
 </template>
 
-<style>
+<style lang="scss">
 :root {
   --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 body {
-  padding-top: 12rem;
+  padding-top: 35vh;
 
   overflow-y: scroll;
 }
@@ -26,7 +26,9 @@ body {
 pre,
 code,
 blockquote {
-  border-radius: 0.175rem;
+  border-radius: 0.2rem;
+
+  box-shadow: 0 0 0.25rem rgba($color: #000, $alpha: 0.075);
 }
 
 .fade-enter-active,
