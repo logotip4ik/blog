@@ -1,4 +1,4 @@
-import { reactive, onMounted, onBeforeUnmount, toRefs } from "vue";
+import { reactive, onMounted, onBeforeUnmount, toRefs } from 'vue';
 
 export default function (options = { fallbackIsDark: false }) {
   const returnValue = reactive({
@@ -11,17 +11,15 @@ export default function (options = { fallbackIsDark: false }) {
   };
 
   onMounted(() => {
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
 
-    media.addEventListener("change", updateIsDark);
+    media.addEventListener('change', updateIsDark);
 
     updateIsDark(media);
   });
 
   onBeforeUnmount(() => {
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .removeEventListener("change", updateIsDark);
+    window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', updateIsDark);
   });
 
   return toRefs(returnValue);
