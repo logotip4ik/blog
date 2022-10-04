@@ -39,8 +39,9 @@ function leavePageAnim(pageEl, done) {
   animate({
     from: window.scrollY,
     to: 0,
-    duration: 500,
+    duration: window.scrollY !== 0 ? 500 : 0,
     onUpdate: (scrollTop) => Object.assign(document.documentElement, { scrollTop }),
+    onComplete: () => animateBackgroundOverlayWithRoute(route.name),
   });
 
   animate({
@@ -48,11 +49,7 @@ function leavePageAnim(pageEl, done) {
     from: 1,
     to: 0,
     onUpdate: (opacity) => Object.assign(pageEl.style, { opacity }),
-    onComplete: () => {
-      animateBackgroundOverlayWithRoute(route.name);
-
-      done();
-    },
+    onComplete: () => done(),
   });
 }
 
