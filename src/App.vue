@@ -1,15 +1,80 @@
-<script setup></script>
+<script setup>
+import { animate } from 'popmotion';
+
+const route = useRoute();
+
+/** @type {import('vue').Ref<HTMLElement | null>} */
+const backgroundOverlay = ref(null);
+/** @type {import('vue').Ref<HTMLElement | null>} */
+const pageContent = ref(null);
+
+function animateBackgroundOverlayWithRoute(routeString) {
+  if (!backgroundOverlay.value) backgroundOverlay.value = document.querySelector('canvas + div');
+
+  const allowedPrefix = ['p-'];
+  let from;
+  let to;
+
+  if (allowedPrefix.some((prefix) => routeString.includes(prefix))) {
+    from = backgroundOverlay.value.style.opacity || 1;
+    to = 1;
+  } else {
+    from = backgroundOverlay.value.style.opacity || 1;
+    to = 0;
+  }
+
+  animate({
+    from,
+    to,
+    duration: 750,
+    onUpdate: (opacity) => Object.assign(backgroundOverlay.value.style, { opacity }),
+  });
+}
+
+function enterPageAnim(pageEl, done) {
+  animate({ from: 0, to: 1, onUpdate: (opacity) => Object.assign(pageEl.style, { opacity }), onComplete: () => done() });
+}
+
+function leavePageAnim(pageEl, done) {
+  animate({
+    from: window.scrollY,
+    to: 0,
+    duration: 500,
+    onUpdate: (scrollTop) => Object.assign(document.documentElement, { scrollTop }),
+  });
+
+  animate({
+    elapsed: window.scrollY !== 0 ? -500 : 0,
+    from: 1,
+    to: 0,
+    onUpdate: (opacity) => Object.assign(pageEl.style, { opacity }),
+    onComplete: () => {
+      animateBackgroundOverlayWithRoute(route.name);
+
+      done();
+    },
+  });
+}
+
+onMounted(() => {
+  animateBackgroundOverlayWithRoute(route.name);
+});
+</script>
 
 <template>
   <Background />
 
   <Navbar />
 
-  <RouterView v-slot="{ Component }">
-    <Transition name="page" mode="out-in">
-      <Component :is="Component" />
-    </Transition>
-  </RouterView>
+  <div ref="pageContent" content>
+    <RouterView v-slot="{ Component }">
+      <Transition @enter="enterPageAnim" @leave="leavePageAnim" mode="out-in">
+        <KeepAlive>
+          <Component :is="Component" />
+        </KeepAlive>
+      </Transition>
+    </RouterView>
+  </div>
 </template>
 
 <style lang="scss">
@@ -26,6 +91,8 @@ body {
 pre,
 code,
 blockquote {
+  // padding-left: 1.25rem;
+
   border-radius: 0.2rem;
 
   box-shadow: 0 0 0.25rem rgba($color: #000, $alpha: 0.075);
