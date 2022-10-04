@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import { join } from 'path';
-import shiki from 'shiki';
 import Vue from '@vitejs/plugin-vue';
 import GLSL from 'vite-plugin-glsl';
 import Pages from 'vite-plugin-pages';
@@ -9,10 +8,15 @@ import Markdown from 'vite-plugin-vue-markdown';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 
+import MarkdownItAnchor from 'markdown-it-anchor';
+import { markdownItShikiTwoslashSetup } from 'markdown-it-shiki-twoslash';
+
+import sequoiaMoonlight from './src/assets/themes/sequoia-moonlight.json';
+
 // https://vitejs.dev/config/
 export default defineConfig(async () => {
-  const hl = await shiki.getHighlighter({
-    theme: 'vitesse-dark',
+  const shiki = await markdownItShikiTwoslashSetup({
+    theme: sequoiaMoonlight,
     langs: ['js', 'ts', 'html', 'css', 'sh'],
   });
 
@@ -48,13 +52,14 @@ export default defineConfig(async () => {
         headEnabled: true,
         wrapperClasses: false,
         wrapperComponent: false,
-        markdownItOptions: {
-          highlight: (code, lang) => hl.codeToHtml(code, { lang }),
+        markdownItSetup: (markdownit) => {
+          markdownit.use(MarkdownItAnchor, { permalink: MarkdownItAnchor.permalink.ariaHidden({ class: '', placement: 'before' }) });
+          markdownit.use(shiki);
         },
       }),
     ],
 
-    ssgOptions: { script: 'async' },
+    ssgOptions: { script: 'async', dirStyle: 'nested', formatting: 'minify' },
 
     resolve: {
       alias: {
