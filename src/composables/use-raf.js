@@ -15,7 +15,7 @@ export default function () {
 
 function createAnimationFrame() {
   const loop = (time) => {
-    callbacks.forEach((value) => typeof value === 'function' && value(time));
+    callbacks.forEach((value) => (typeof value === 'function' ? value(time) : callbacks.delete(value)));
 
     requestAnimationFrame(loop);
   };
