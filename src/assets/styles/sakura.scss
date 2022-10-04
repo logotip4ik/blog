@@ -5,14 +5,14 @@
  */
 
 :root {
-  --color-blossom: #007559;
-  --color-fade: #006994;
+  --color-blossom: #271685;
+  --color-fade: #423394;
   --color-bg: #ffffff;
   --color-bg-alt: #f7f7f7;
   --color-text: #222222;
   --font-size-base: 1.8rem;
   --font-family-base: 'Vercetti', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
-  --font-family-heading: var(--font-family-base);
+  --font-family-heading: 'IBM Plex Sans', var(--font-family-base);
 
   --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
   --default-ease-with-timings: 0.3s var(--ease-out-cubic);
@@ -22,7 +22,7 @@
     --color-fade: #c9c9c9;
     --color-bg: #222222;
     --color-bg-alt: #4a4a4a;
-    --color-text: #c9c9c9;
+    --color-text: #dbdbdb;
   }
 }
 
@@ -37,6 +37,8 @@
 html {
   font-size: 62.5%; // So that root size becomes 10px
   font-family: var(--font-family-base);
+
+  scroll-behavior: smooth;
 }
 
 body {
@@ -75,7 +77,11 @@ h6 {
 }
 
 h1 {
-  font-size: 2.35em;
+  font-size: 2.75em;
+
+  margin-bottom: 4rem;
+
+  mix-blend-mode: luminosity;
 }
 h2 {
   font-size: 2em;
@@ -111,19 +117,51 @@ hr {
 }
 
 a {
+  position: relative;
+  z-index: 0;
+
   text-decoration: none;
   color: var(--color-blossom);
 
-  transition: color var(--default-ease-with-timings), border-bottom-color var(--default-ease-with-timings);
+  transition: color var(--default-ease-with-timings), border-bottom var(--default-ease-with-timings);
 
-  &:visited {
-    // TODO somehow darken css variable
-    // filter: brightness(0.6);
+  &::after {
+    content: '';
+
+    position: absolute;
+    top: calc(100%);
+    bottom: -0.125rem;
+    left: -0.075rem;
+    right: -0.075rem;
+    z-index: -1;
+
+    background-color: var(--color-text);
+
+    transition: top var(--default-ease-with-timings);
   }
 
-  &:hover {
-    color: var(--color-fade);
-    border-bottom: 2px solid var(--color-text);
+  &:is(:hover, :focus-visible) {
+    color: var(--color-bg);
+
+    &::after {
+      top: -0.125rem;
+    }
+  }
+}
+
+h1 a[aria-hidden='true'],
+h2 a[aria-hidden='true'],
+h3 a[aria-hidden='true'],
+h4 a[aria-hidden='true'],
+h5 a[aria-hidden='true'],
+h6 a[aria-hidden='true'] {
+  &::after {
+    top: calc(100% - 0.6rem);
+    bottom: 0.5rem;
+  }
+
+  &:is(:hover, :focus-visible)::after {
+    top: 00.75rem;
   }
 }
 
@@ -149,6 +187,8 @@ blockquote {
   background-color: var(--color-bg-alt);
 
   transition: background-color var(--default-ease-with-timings), border-left-color var(--default-ease-with-timings);
+
+  mix-blend-mode: luminosity;
 }
 
 blockquote p {
@@ -188,7 +228,7 @@ samp {
   transition: background-color var(--default-ease-with-timings);
 }
 
-pre > code {
+pre code {
   padding: 0;
   background-color: transparent;
   white-space: pre;
