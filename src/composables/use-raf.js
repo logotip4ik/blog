@@ -1,4 +1,4 @@
-import { onMounted } from "vue";
+import { onMounted } from 'vue';
 
 const callbacks = new Map();
 
@@ -15,14 +15,12 @@ export default function () {
 
 function createAnimationFrame() {
   const loop = (time) => {
-    callbacks.forEach((value) => typeof value === "function" && value(time));
+    callbacks.forEach((value) => typeof value === 'function' && value(time));
 
     requestAnimationFrame(loop);
   };
 
   animationFrame = requestAnimationFrame(loop);
 
-  window.addEventListener("beforeunload", () =>
-    cancelAnimationFrame(animationFrame)
-  );
+  window.addEventListener('beforeunload', () => cancelAnimationFrame(animationFrame));
 }
