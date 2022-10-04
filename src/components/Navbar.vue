@@ -1,11 +1,11 @@
 <script setup>
-import ArrowBack from "../assets/icons/arrow-back.svg?component";
+import ArrowBack from '../assets/icons/arrow-back.svg?component';
 
 const backButton = ref(null);
 const route = useRoute();
 
 const showBackArrow = computed(() => {
-  const allowedPrefix = ["p/"];
+  const allowedPrefix = ['p/'];
 
   return allowedPrefix.some((prefix) => route.fullPath.includes(prefix));
 });
@@ -22,18 +22,18 @@ function backButtonScrollAnimation() {
 
     if (!backButton.value) return;
 
-    if (direction > 0) backButton.value.setAttribute("hidden", true);
-    if (direction < 0) backButton.value.removeAttribute("hidden");
+    if (direction > 0) backButton.value.setAttribute('hidden', true);
+    if (direction < 0) backButton.value.removeAttribute('hidden');
   };
 }
 
 onMounted(() => {
   const scrollListener = backButtonScrollAnimation();
 
-  window.addEventListener("scroll", scrollListener, { passive: true });
+  window.addEventListener('scroll', scrollListener, { passive: true });
 
   onBeforeUnmount(() => {
-    window.removeEventListener("scroll", scrollListener);
+    window.removeEventListener('scroll', scrollListener);
   });
 });
 </script>
@@ -41,12 +41,7 @@ onMounted(() => {
 <template>
   <nav>
     <transition name="fade">
-      <button
-        v-if="showBackArrow"
-        ref="backButton"
-        arrow-back
-        @click="$router.back()"
-      >
+      <button v-if="showBackArrow" ref="backButton" arrow-back @click="$router.back()">
         <ArrowBack />
       </button>
     </transition>
@@ -61,6 +56,7 @@ nav {
   position: fixed;
   top: 0;
   left: 50%;
+  z-index: 10;
 
   width: calc(100% - 13px);
   max-width: 38em;
@@ -87,18 +83,24 @@ nav {
       padding: 3rem;
       margin-left: auto;
 
-      color: #222222;
+      color: white;
+      border-color: white;
 
       border-radius: 50%;
 
-      transition: background-color 0.3s var(--ease-out),
-        color 0.3s var(--ease-out), opacity 0.3s var(--ease-out);
+      transition: background-color 0.3s var(--ease-out), color 0.3s var(--ease-out), opacity 0.3s var(--ease-out);
 
       svg {
         display: block;
 
         width: 5rem;
         height: auto;
+      }
+
+      &:is(:hover, :focus-visible) {
+        background-color: #c9c9c9;
+        border-color: #c9c9c9;
+        color: #222222;
       }
 
       @media (prefers-color-scheme: dark) {
