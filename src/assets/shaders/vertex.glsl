@@ -11,6 +11,8 @@ uniform float inclining;
 uniform float movementX;
 uniform float movementY;
 uniform float noiseStrength;
+uniform float uColorStrength;
+uniform vec3 uClearColor;
 uniform vec3 uColor[4];
 uniform vec2 uColorFreq;
 uniform mat4 projectionMatrix;
@@ -21,6 +23,8 @@ varying vec2 vUv;
 varying vec3 vPosition;
 varying vec3 vColor;
 varying vec3 vNormal;
+varying vec3 vClearColor;
+varying float vColorStrength;
 
 #include utils/noise;
 
@@ -42,6 +46,8 @@ void main() {
   vUv = uv;
   vPosition = position;
   vNormal = normalMatrix * normal;
+  vColorStrength = uColorStrength;
+  vClearColor = uClearColor;
 
   vColor = uColor[3];
 

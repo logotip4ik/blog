@@ -10,6 +10,7 @@ const raf = useRaf();
 const { isDark } = useDarkMode();
 
 const canvas = ref(null);
+const overlay = ref(null);
 
 const MAX_DPR = 2.15;
 
@@ -22,6 +23,8 @@ const options = {
   speedMultiplier: 1,
   colorFreqX: 1.4,
   colorFreqY: 1.3,
+  colorStrength: 0,
+  clearColor: [34, 34, 34],
   tilting: 1.5,
   inclining: 0.25,
   movementX: 0.105,
@@ -36,13 +39,13 @@ function render({ renderer, scene, camera, object }) {
     const normalizedColorArray = object.program.uniforms.uColor.value[i];
 
     // if colors is the same do nothing
-    // prettier-ignore
-    if (normalizedColorArray.every((color, colorIdx) => colors[i][colorIdx] === color))
-      continue;
+    if (normalizedColorArray.every((color, colorIdx) => colors[i][colorIdx] === color)) continue;
 
     object.program.uniforms.uColor.value[i] = colors[i];
   }
 
+  object.program.uniforms.uClearColor.value = options.clearColor;
+  object.program.uniforms.uColorStrength.value = options.colorStrength;
   object.program.uniforms.uColorFreq.value[0] = options.colorFreqX;
   object.program.uniforms.uColorFreq.value[1] = options.colorFreqY;
   object.program.uniforms.tilting.value = options.tilting;
@@ -67,8 +70,6 @@ function resize({ renderer, camera, object }) {
 
 let firstChange = true;
 watch(isDark, (value) => {
-  if (firstChange) return (firstChange = false);
-
   let from;
   let to;
 
@@ -80,6 +81,11 @@ watch(isDark, (value) => {
     to = lightColors;
   }
 
+  if (firstChange) {
+    firstChange = false;
+    from = colors;
+  }
+
   // prettier-ignore
   for (let i = 0; i < from.length; i += 1)
     for (let j = 0; j < from[0].length; j += 1)
@@ -89,8 +95,8 @@ watch(isDark, (value) => {
 onMounted(() => {
   const aspect = window.innerWidth / window.innerHeight;
 
-  colors = JSON.parse(JSON.stringify(isDark ? darkColors : lightColors));
-  const clearColor = normalizeRgb(isDark ? [3, 3, 3] : [235, 235, 235]);
+  colors = JSON.parse(JSON.stringify(isDark.value ? darkColors : lightColors));
+  options.clearColor = normalizeRgb(isDark.value ? [34, 34, 34] : [255, 255, 255]);
 
   const renderer = new Renderer({
     canvas: canvas.value,
@@ -101,7 +107,7 @@ onMounted(() => {
   });
 
   const gl = renderer.gl;
-  gl.clearColor(...clearColor, 1);
+  gl.clearColor(...options.clearColor, 1);
 
   const camera = new Camera(gl, { aspect });
   camera.position.set(0, 0, 0.5);
@@ -135,6 +141,8 @@ onMounted(() => {
       time: { value: 0.0 },
       randomSeed: { value: Math.random() * 1000 },
       uColor: { value: colors.map((color) => new Color(color)) },
+      uClearColor: { value: options.clearColor },
+      uColorStrength: { value: options.colorStrength },
       uColorFreq: { value: new Vec2(options.colorFreqX, options.colorFreqY) },
       tilting: { value: options.tilting },
       inclining: { value: options.inclining },
@@ -161,6 +169,16 @@ onMounted(() => {
 
   window.addEventListener('resize', resizer, false);
 
+  const content = document.querySelector('div[content]');
+  animate({
+    from: options.colorStrength,
+    to: 1,
+    stiffness: 15,
+    duration: 1000,
+    onUpdate: (val) => (options.colorStrength = val),
+    onPlay: () => animate({ from: 0, to: 1, elapsed: -500, onUpdate: (opacity) => Object.assign(content.style, { opacity }) }),
+  });
+
   onBeforeUnmount(() => {
     raf.remove(renderFunction);
 
@@ -173,7 +191,7 @@ onMounted(() => {
   <div>
     <canvas ref="canvas" />
 
-    <div aria-hidden="true"></div>
+    <div ref="overlay" aria-hidden="true"></div>
   </div>
 </template>
 
@@ -184,7 +202,7 @@ canvas {
   left: 0;
   z-index: -1;
 
-  width: 100vw;
+  width: calc(100vw - 20px);
   height: 100vh;
 
   box-sizing: border-box;
@@ -194,8 +212,7 @@ canvas {
     inset: 0;
     z-index: -1;
 
-    background-color: var(--color-bg);
-    opacity: 0.25;
+    background-image: linear-gradient(to top, var(--color-bg), 0%, var(--color-bg) 2%, transparent 50%, transparent 100%);
   }
 }
 </style>
