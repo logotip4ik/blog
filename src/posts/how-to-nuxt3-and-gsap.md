@@ -18,13 +18,13 @@ So we will assume that you have working nuxt3 website and installed gsap (latest
 // ~/nuxt.config.js
 
 // you can omit this line in nuxt3 rc.10+
-import { defineNuxtConfig } from "nuxt";
+import { defineNuxtConfig } from 'nuxt';
 
 export default defineNuxtConfig({
   // ...some configuration
 
   build: {
-    transpile: ["gsap"],
+    transpile: ['gsap'],
   },
 
   // ...even more configuration
@@ -40,9 +40,9 @@ We need to import gsap and register plugins as soon as possible, before every co
 ```javascript
 // ~/plugins/gsap.js
 
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
 // nuxt will auto import defineNuxtPlugin, so our file will look clean
 export default defineNuxtPlugin(() => {
@@ -93,7 +93,7 @@ And then in every page or component you can do:
     gsap.from(box.value, {
       y: -100,
       opacity: 0,
-      ease: "expo.out",
+      ease: 'expo.out',
       duration: 1,
     });
   });
