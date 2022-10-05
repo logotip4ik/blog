@@ -31,10 +31,21 @@ function animateBackgroundOverlayWithRoute(routeString) {
   });
 }
 
+/**
+ * @param {HTMLElement} pageEl
+ * @param {function} done
+ */
 function enterPageAnim(pageEl, done) {
+  // fix from initially blinking content because onUpdate gives not zero value at the beginning
+  Object.assign(pageEl.style, { opacity: 0 });
+
   animate({ from: 0, to: 1, onUpdate: (opacity) => Object.assign(pageEl.style, { opacity }), onComplete: () => done() });
 }
 
+/**
+ * @param {HTMLElement} pageEl
+ * @param {function} done
+ */
 function leavePageAnim(pageEl, done) {
   animate({
     from: window.scrollY,
@@ -63,9 +74,9 @@ onMounted(() => {
 
   <Navbar />
 
-  <div ref="pageContent" content>
+  <div ref="pageContent" content style="opacity: 0">
     <RouterView v-slot="{ Component }">
-      <Transition @enter="enterPageAnim" @leave="leavePageAnim" mode="out-in">
+      <Transition :css="false" @enter="enterPageAnim" @leave="leavePageAnim" mode="out-in">
         <KeepAlive>
           <Component :is="Component" />
         </KeepAlive>
