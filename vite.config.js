@@ -52,6 +52,7 @@ export default defineConfig(async () => {
         headEnabled: true,
         wrapperClasses: false,
         wrapperComponent: false,
+        markdownItOptions: { typographer: true },
         markdownItSetup: (markdownit) => {
           markdownit.use(MarkdownItAnchor, { permalink: MarkdownItAnchor.permalink.ariaHidden({ class: '', placement: 'before' }) });
           markdownit.use(shiki);
