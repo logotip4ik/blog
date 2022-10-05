@@ -2,6 +2,10 @@
 import pages from '~pages';
 
 const posts = computed(() => pages.filter((page) => page.path.includes('/p')));
+
+useHead({
+  title: 'blog',
+});
 </script>
 
 <template>
