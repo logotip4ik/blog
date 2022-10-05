@@ -106,6 +106,10 @@ nav {
       @media (prefers-color-scheme: dark) {
         color: #c9c9c9;
       }
+
+      @media print {
+        display: none;
+      }
     }
 
     &[hidden] {
