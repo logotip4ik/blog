@@ -1,4 +1,9 @@
-```ts {3} title="nuxt.config.js"
+---
+title: code highlighting testing
+tags: [typescript, shiki, vite-ssg]
+---
+
+```ts {3} title="nuxt.config.ts"
 interface IdLabel {
   id: number /* some fields */;
 }
