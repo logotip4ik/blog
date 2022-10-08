@@ -66,6 +66,8 @@ function resize({ renderer, camera, object }) {
 
   object.updateMatrix();
   camera.updateMatrix();
+
+  Object.assign(document.documentElement.style, { '--vh': window.innerHeight / 100 });
 }
 
 let firstChange = true;
@@ -208,9 +210,15 @@ canvas {
   box-sizing: border-box;
 
   & + div {
+    --100vh: calc(var(--vh, 1vh) * 100);
+
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: -1;
+
+    height: var(--100vh);
 
     background-image: linear-gradient(to top, var(--color-bg), 0%, var(--color-bg) 2%, transparent 50%, transparent 100%);
   }
