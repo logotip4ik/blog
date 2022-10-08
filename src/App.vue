@@ -7,29 +7,7 @@ const route = useRoute();
 const backgroundOverlay = ref(null);
 /** @type {import('vue').Ref<HTMLElement | null>} */
 const pageContent = ref(null);
-
-function animateBackgroundOverlayWithRoute(routeString) {
-  if (!backgroundOverlay.value) backgroundOverlay.value = document.querySelector('canvas + div');
-
-  const allowedPrefix = ['p-'];
-  let from;
-  let to;
-
-  if (allowedPrefix.some((prefix) => routeString.includes(prefix))) {
-    from = backgroundOverlay.value.style.opacity || 1;
-    to = 1;
-  } else {
-    from = backgroundOverlay.value.style.opacity || 1;
-    to = 0;
-  }
-
-  animate({
-    from,
-    to,
-    duration: 750,
-    onUpdate: (opacity) => Object.assign(backgroundOverlay.value.style, { opacity }),
-  });
-}
+const background = ref(null);
 
 /**
  * @param {HTMLElement} pageEl
@@ -39,7 +17,12 @@ function enterPageAnim(pageEl, done) {
   // fix from initially blinking content because onUpdate gives not zero value at the beginning
   Object.assign(pageEl.style, { opacity: 0 });
 
-  animate({ from: 0, to: 1, onUpdate: (opacity) => Object.assign(pageEl.style, { opacity }), onComplete: () => done() });
+  animate({
+    from: 0,
+    to: 1,
+    onUpdate: (opacity) => Object.assign(pageEl.style, { opacity }),
+    onComplete: () => done(),
+  });
 }
 
 /**
@@ -47,30 +30,29 @@ function enterPageAnim(pageEl, done) {
  * @param {function} done
  */
 function leavePageAnim(pageEl, done) {
-  animate({
-    from: window.scrollY,
-    to: 0,
-    duration: window.scrollY !== 0 ? 500 : 0,
-    onUpdate: (scrollTop) => Object.assign(document.documentElement, { scrollTop }),
-    onComplete: () => animateBackgroundOverlayWithRoute(route.name),
-  });
+  const shouldScrollToTop = window.scrollY !== 0;
+
+  if (shouldScrollToTop) {
+    animate({
+      from: window.scrollY,
+      to: 0,
+      duration: 500,
+      onUpdate: (scrollTop) => Object.assign(document.documentElement, { scrollTop }),
+    });
+  }
 
   animate({
-    elapsed: window.scrollY !== 0 ? -500 : 0,
+    elapsed: shouldScrollToTop ? -600 : 0,
     from: 1,
     to: 0,
     onUpdate: (opacity) => Object.assign(pageEl.style, { opacity }),
     onComplete: () => done(),
   });
 }
-
-onMounted(() => {
-  animateBackgroundOverlayWithRoute(route.name);
-});
 </script>
 
 <template>
-  <Background />
+  <Background ref="background" />
 
   <Navbar />
 
@@ -99,8 +81,6 @@ body {
 pre,
 code,
 blockquote {
-  // padding-left: 1.25rem;
-
   border-radius: 0.2rem;
 
   box-shadow: 0 0 0.25rem rgba($color: #000, $alpha: 0.075);
@@ -113,16 +93,6 @@ blockquote {
 
 .fade-enter-from,
 .fade-leave-to {
-  opacity: 0;
-}
-
-.page-enter-active,
-.page-leave-active {
-  transition: opacity 0.3s var(--ease-out);
-}
-
-.page-enter-from,
-.page-leave-to {
   opacity: 0;
 }
 </style>
