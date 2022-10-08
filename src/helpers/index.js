@@ -21,3 +21,16 @@ export function getScrollbarWidth() {
 
   return scrollbarWidth;
 }
+
+/** @param {string} filename */
+export function filenameToRouteName(filename) {
+  return filename
+    .split('')
+    .map((char, idx) => (idx === 0 ? char.toUpperCase() : char === '-' ? ' ' : char))
+    .join('');
+}
+
+/** @param {Date} createdAt */
+export function formatDate(createAt) {
+  return Intl.DateTimeFormat(undefined, { day: '2-digit', month: 'short', year: 'numeric' }).format(createAt);
+}
