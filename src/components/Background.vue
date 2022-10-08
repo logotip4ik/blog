@@ -9,7 +9,9 @@ import { Renderer, Transform, Camera, Plane, Program, Mesh, Color, Vec2 } from '
 const raf = useRaf();
 const { isDark } = useDarkMode();
 
+/** @type {import('vue').Ref<HTMLElement | null>} */
 const canvas = ref(null);
+/** @type {import('vue').Ref<HTMLElement | null>} */
 const overlay = ref(null);
 
 const MAX_DPR = 2.15;
@@ -69,6 +71,8 @@ function resize({ renderer, camera, object }) {
 
   Object.assign(document.documentElement.style, { '--vh': window.innerHeight / 100 });
 }
+
+defineExpose({ canvas, overlay });
 
 let firstChange = true;
 watch(isDark, (value) => {
@@ -190,11 +194,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    <canvas ref="canvas" />
-
-    <div ref="overlay" aria-hidden="true"></div>
-  </div>
+  <canvas ref="canvas" />
 </template>
 
 <style lang="scss">
@@ -208,19 +208,5 @@ canvas {
   height: 100vh;
 
   box-sizing: border-box;
-
-  & + div {
-    --100vh: calc(var(--vh, 1vh) * 100);
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: -1;
-
-    height: var(--100vh);
-
-    background-image: linear-gradient(to top, var(--color-bg), 0%, var(--color-bg) 2%, transparent 50%, transparent 100%);
-  }
 }
 </style>
