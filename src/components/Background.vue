@@ -72,7 +72,7 @@ function resize({ renderer, camera, object }) {
   Object.assign(document.documentElement.style, { '--vh': window.innerHeight / 100 });
 }
 
-defineExpose({ canvas, overlay });
+defineExpose({ canvas, overlay, options });
 
 let firstChange = true;
 watch(isDark, (value) => {
