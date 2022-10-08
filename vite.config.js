@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
-import { join } from 'path';
+import { join, resolve, parse } from 'path';
+import { statSync } from 'fs';
 import Vue from '@vitejs/plugin-vue';
 import GLSL from 'vite-plugin-glsl';
 import Pages from 'vite-plugin-pages';
@@ -30,6 +31,31 @@ export default defineConfig(async () => {
           { dir: 'src/pages', baseRoute: '' },
           { dir: 'src/posts', baseRoute: 'p' },
         ],
+        /**
+         *
+         * @param {{ name: string, path: string, component: string, props: boolean }} route
+         * @returns
+         */
+        extendRoute(route) {
+          // removing leading slash
+          const normalizedComponentPath = route.component.slice(1);
+          const componentPath = resolve(__dirname, normalizedComponentPath);
+
+          const routeInfo = statSync(componentPath);
+          const { name, ext } = parse(componentPath);
+
+          const info = {
+            ext,
+            filename: name,
+            updatedAt: routeInfo.mtime,
+            createdAt: routeInfo.birthtime,
+          };
+
+          const prefixTypeMapper = { '/p': 'post' };
+          for (const [prefix, type] in Object.entries(prefixTypeMapper)) if (route.path.includes(prefix)) info.type = type;
+
+          return { ...route, ...info };
+        },
       }),
 
       SvgLoader({ svgo: false }),
