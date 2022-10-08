@@ -1,6 +1,4 @@
 <script setup>
-import ArrowBack from '../assets/icons/arrow-back.svg?component';
-
 const backButton = ref(null);
 const route = useRoute();
 
@@ -22,8 +20,8 @@ function backButtonScrollAnimation() {
 
     if (!backButton.value) return;
 
-    if (direction > 0) backButton.value.setAttribute('hidden', true);
-    if (direction < 0) backButton.value.removeAttribute('hidden');
+    if (direction > 0) backButton.value.setAttribute('data-hidden', true);
+    if (direction < 0) backButton.value.removeAttribute('data-hidden');
   };
 }
 
@@ -41,9 +39,7 @@ onMounted(() => {
 <template>
   <nav>
     <transition name="fade">
-      <button v-if="showBackArrow" ref="backButton" arrow-back @click="$router.back()">
-        <ArrowBack />
-      </button>
+      <button v-if="showBackArrow" ref="backButton" arrow-back @click="$router.back()">go back</button>
     </transition>
   </nav>
 </template>
@@ -76,35 +72,23 @@ nav {
     pointer-events: all;
 
     &[arrow-back] {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-
       padding: 3rem;
       margin-left: auto;
 
+      font-family: var(--font-family-heading);
+      font-size: 2rem;
       color: white;
-      border-color: white;
 
-      border-radius: 50%;
+      border: 1px solid transparent;
+      border-radius: 0.2rem;
 
-      transition: background-color 0.3s var(--ease-out), color 0.3s var(--ease-out), opacity 0.3s var(--ease-out);
+      transition: border-color 0.3s var(--ease-out), opacity 0.3s var(--ease-out);
 
-      svg {
-        display: block;
+      &:is(:focus-visible, :hover) {
+        color: white;
+        border-color: currentColor;
 
-        width: 5rem;
-        height: auto;
-      }
-
-      &:is(:hover, :focus-visible) {
-        background-color: #c9c9c9;
-        border-color: #c9c9c9;
-        color: #222222;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        color: #c9c9c9;
+        background: transparent;
       }
 
       @media print {
@@ -112,11 +96,15 @@ nav {
       }
     }
 
-    &[hidden] {
+    &[data-hidden] {
       opacity: 0;
-      pointer-events: none;
 
       transition-duration: 0.1s;
+
+      // even if button is hidden from eyes, still show on tabbing through the page
+      &:focus-visible {
+        opacity: 1;
+      }
     }
   }
 }
