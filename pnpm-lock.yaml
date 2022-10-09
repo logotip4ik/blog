@@ -18,6 +18,7 @@ specifiers:
   vite-plugin-pages: ^0.26.0
   vite-plugin-vue-markdown: ^0.22.1
   vite-ssg: ^0.20.2
+  vite-ssg-sitemap: ^0.4.3
   vite-svg-loader: ^3.6.0
   vue: ^3.2.37
   vue-router: ^4.1.5
@@ -37,6 +38,7 @@ dependencies:
   vite-plugin-pages: 0.26.0_vite@3.1.3
   vite-plugin-vue-markdown: 0.22.1_vite@3.1.3
   vite-ssg: 0.20.2_rfiaebzrhehkn5e4i73sr3vwbq
+  vite-ssg-sitemap: 0.4.3
   vite-svg-loader: 3.6.0
   vue: 3.2.39
   vue-router: 4.1.5_vue@3.2.39
@@ -2210,6 +2212,10 @@ packages:
       '@types/markdown-it': 12.2.3
       markdown-it: 13.0.1
       vite: 3.1.3_sass@1.55.0
+    dev: false
+
+  /vite-ssg-sitemap/0.4.3:
+    resolution: {integrity: sha512-9ZIRBRCgM1Q4RtXXEBHIu8gotbx9LCnHZOZXtdSzR0DnjN9H5IYGY3yGoxI6VX8dScXiluxOODFlNlr7ydyI9A==}
     dev: false
 
   /vite-ssg/0.20.2_rfiaebzrhehkn5e4i73sr3vwbq:
