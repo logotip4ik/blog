@@ -102,5 +102,9 @@ export default defineConfig(async () => {
         '~assets': join(__dirname, 'src', 'assets'),
       },
     },
+
+    optimizeDeps: {
+      include: ['vue', 'vue-router', 'ogl', 'popmotion'],
+    },
   };
 });
