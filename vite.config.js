@@ -9,6 +9,7 @@ import Markdown from 'vite-plugin-vue-markdown';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 
+import generateSitemap from 'vite-ssg-sitemap';
 import MarkdownItAnchor from 'markdown-it-anchor';
 import { markdownItShikiTwoslashSetup } from 'markdown-it-shiki-twoslash';
 
@@ -31,11 +32,7 @@ export default defineConfig(async () => {
           { dir: 'src/pages', baseRoute: '' },
           { dir: 'src/posts', baseRoute: 'p' },
         ],
-        /**
-         *
-         * @param {{ name: string, path: string, component: string, props: boolean }} route
-         * @returns
-         */
+        /** @param {{ name: string, path: string, component: string, props: boolean }} route */
         extendRoute(route) {
           // removing leading slash
           const normalizedComponentPath = route.component.slice(1);
@@ -86,7 +83,18 @@ export default defineConfig(async () => {
       }),
     ],
 
-    ssgOptions: { script: 'async', dirStyle: 'nested', formatting: 'minify' },
+    ssgOptions: {
+      script: 'async',
+      dirStyle: 'nested',
+      formatting: 'minify',
+
+      onFinished() {
+        generateSitemap({
+          hostname: 'https://blog.bogdankostyuk.xyz',
+          robots: [{ userAgent: '*', disallow: '' }],
+        });
+      },
+    },
 
     resolve: {
       alias: {
