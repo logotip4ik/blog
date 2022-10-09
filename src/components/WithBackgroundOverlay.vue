@@ -1,3 +1,9 @@
+<script setup>
+defineProps({
+  frontmatter: { type: Object, required: true, default: () => ({}) },
+});
+</script>
+
 <template>
   <div>
     <div background-overlay></div>
