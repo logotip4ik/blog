@@ -179,10 +179,9 @@ onMounted(() => {
   animate({
     from: options.colorStrength,
     to: 1,
-    stiffness: 15,
-    duration: 1000,
+    duration: 500,
     onUpdate: (val) => (options.colorStrength = val),
-    onPlay: () => animate({ from: 0, to: 1, elapsed: -500, onUpdate: (opacity) => Object.assign(content.style, { opacity }) }),
+    onPlay: () => animate({ from: 0, to: 1, elapsed: -300, onUpdate: (opacity) => Object.assign(content.style, { opacity }) }),
   });
 
   onBeforeUnmount(() => {
