@@ -30,7 +30,7 @@ export default defineConfig(async () => {
         extensions: ['vue', 'md'],
         dirs: [
           { dir: 'src/pages', baseRoute: '' },
-          { dir: 'src/posts', baseRoute: 'p' },
+          { dir: 'posts', baseRoute: 'p' },
         ],
         /** @param {{ name: string, path: string, component: string, props: boolean }} route */
         extendRoute(route) {
