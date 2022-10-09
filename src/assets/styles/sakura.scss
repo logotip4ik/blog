@@ -123,29 +123,17 @@ a {
   text-decoration: none;
   color: var(--color-blossom);
 
-  transition: color var(--default-ease-with-timings), border-bottom var(--default-ease-with-timings);
+  background-image: linear-gradient(var(--color-text), var(--color-text));
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 2px;
 
-  &::after {
-    content: '';
-
-    position: absolute;
-    top: calc(100%);
-    bottom: -0.125rem;
-    left: -0.075rem;
-    right: -0.075rem;
-    z-index: -1;
-
-    background-color: var(--color-text);
-
-    transition: top var(--default-ease-with-timings);
-  }
+  transition: color var(--default-ease-with-timings), background-size var(--default-ease-with-timings);
 
   &:is(:hover, :focus-visible) {
     color: var(--color-bg);
 
-    &::after {
-      top: -0.125rem;
-    }
+    background-size: 100% 100%;
   }
 }
 
@@ -155,13 +143,12 @@ h3 a[aria-hidden='true'],
 h4 a[aria-hidden='true'],
 h5 a[aria-hidden='true'],
 h6 a[aria-hidden='true'] {
-  &::after {
-    top: calc(100% - 0.6rem);
-    bottom: 0.5rem;
-  }
+  --offset: 0.4rem;
 
-  &:is(:hover, :focus-visible)::after {
-    top: 00.75rem;
+  background-position: 0% calc(100% - var(--offset));
+
+  &:is(:hover, :focus-visible) {
+    background-size: 100% calc(100% - var(--offset) * 2.5);
   }
 }
 
