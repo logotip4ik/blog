@@ -42,19 +42,16 @@ pre.shiki {
 
 @media (hover: hover) {
   pre.shiki:hover .dim,
-  pre.shiki:hover .line:empty,
-  pre.shiki:hover .code-title {
+  pre.shiki:hover .line:empty {
     opacity: 1;
 
     transition: opacity 0.075s var(--ease-out-cubic);
   }
 
   pre.shiki div.dim,
-  pre.shiki div.line:empty {
-    opacity: 0.5;
-  }
-
-  pre.shiki .code-title {
+  pre.shiki div.line:empty + div.line:empty,
+  pre.shiki div.line.highlight + div.line:empty,
+  pre.shiki div.line.dim + div.line:empty {
     opacity: 0.5;
   }
 }
