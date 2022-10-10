@@ -125,6 +125,8 @@ export default defineConfig(async () => {
       },
     },
 
+    build: { sourcemap: false },
+
     optimizeDeps: {
       include: ['vue', 'vue-router', 'ogl', 'popmotion'],
     },
