@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import { join, resolve, parse } from 'path';
-import { statSync } from 'fs';
+import { statSync, readFileSync } from 'fs';
 import Vue from '@vitejs/plugin-vue';
 import GLSL from 'vite-plugin-glsl';
 import Pages from 'vite-plugin-pages';
@@ -9,6 +9,7 @@ import Markdown from 'vite-plugin-vue-markdown';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 
+import matter from 'gray-matter';
 import generateSitemap from 'vite-ssg-sitemap';
 import MarkdownItAnchor from 'markdown-it-anchor';
 import { markdownItShikiTwoslashSetup } from 'markdown-it-shiki-twoslash';
@@ -32,16 +33,37 @@ export default defineConfig(async () => {
           { dir: 'src/pages', baseRoute: '' },
           { dir: 'posts', baseRoute: 'p' },
         ],
+        onRoutesGenerated(routes) {
+          if (process.env.NODE_ENV === 'development') return routes;
+
+          const newRoutes = [];
+
+          for (const route of routes) {
+            const normalizedComponentPath = route.component.slice(1);
+            const componentPath = resolve(__dirname, normalizedComponentPath);
+            const postContents = readFileSync(componentPath, { encoding: 'utf-8' });
+
+            const { data, isEmpty } = matter(postContents);
+
+            if (isEmpty) continue;
+            if (!data.draft) newRoutes.push(route);
+          }
+
+          return newRoutes;
+        },
         /** @param {{ name: string, path: string, component: string, props: boolean }} route */
         extendRoute(route) {
           // removing leading slash
           const normalizedComponentPath = route.component.slice(1);
           const componentPath = resolve(__dirname, normalizedComponentPath);
 
+          const routeContent = readFileSync(componentPath);
           const routeInfo = statSync(componentPath);
           const { name, ext } = parse(componentPath);
+          const { data: meta } = matter(routeContent);
 
           const info = {
+            meta,
             ext,
             filename: name,
             updatedAt: routeInfo.mtime,
