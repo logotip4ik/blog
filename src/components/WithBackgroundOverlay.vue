@@ -1,7 +1,9 @@
 <script setup>
-defineProps({
+const props = defineProps({
   frontmatter: { type: Object, required: true, default: () => ({}) },
 });
+
+useHead({ title: `${props.frontmatter.title} | Blog` });
 </script>
 
 <template>
