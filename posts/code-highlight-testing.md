@@ -1,6 +1,7 @@
 ---
 title: code highlighting testing
 tags: [typescript, shiki, vite-ssg]
+draft: true
 ---
 
 ```ts {3} title="nuxt.config.ts"
