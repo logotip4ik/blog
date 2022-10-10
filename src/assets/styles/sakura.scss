@@ -53,12 +53,10 @@ body {
 
   transition: color var(--default-ease-with-timings);
 
-  @media (max-width: 684px) {
-    font-size: calc(var(--font-size-base) * 0.85);
-  }
+  @media (max-width: 760px) {
+    font-size: calc(var(--font-size-base) * 0.95);
 
-  @media (max-width: 382px) {
-    font-size: calc(var(--font-size-base) * 0.8);
+    padding-inline: 1.35em;
   }
 }
 
@@ -68,6 +66,7 @@ h3,
 h4,
 h5,
 h6 {
+  position: relative;
   line-height: 1.1;
   font-family: var(--font-family-heading);
   font-weight: 700;
@@ -137,18 +136,38 @@ a {
   }
 }
 
-h1 a[aria-hidden='true'],
-h2 a[aria-hidden='true'],
-h3 a[aria-hidden='true'],
-h4 a[aria-hidden='true'],
-h5 a[aria-hidden='true'],
-h6 a[aria-hidden='true'] {
-  --offset: 0.4rem;
+@for $i from 1 to 7 {
+  h#{$i}:is(:hover, :focus-visible) > a[aria-hidden='true'] {
+    opacity: 0.5;
+  }
 
-  background-position: 0% calc(100% - var(--offset));
+  h#{$i} a[aria-hidden='true'] {
+    --offset-from-text: 0.25rem;
 
-  &:is(:hover, :focus-visible) {
-    background-size: 100% calc(100% - var(--offset) * 2.5);
+    position: absolute;
+    right: calc(100% + var(--offset-from-text));
+    top: 0;
+
+    color: var(--color-text);
+
+    opacity: 0;
+    background-image: none;
+
+    transition: opacity var(--default-ease-with-timings);
+
+    &:is(:hover, :focus-visible) {
+      color: var(--color-text);
+
+      opacity: 1;
+    }
+
+    @media (max-width: 760px) {
+      --offset-from-text: 0.1rem;
+
+      font-size: 0.7em;
+
+      padding-top: 0.55rem;
+    }
   }
 }
 
