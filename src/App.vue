@@ -42,7 +42,7 @@ function leavePageAnim(pageEl, done) {
   }
 
   animate({
-    elapsed: shouldScrollToTop ? -600 : 0,
+    elapsed: shouldScrollToTop ? -700 : 0,
     from: 1,
     to: 0,
     onUpdate: (opacity) => Object.assign(pageEl.style, { opacity }),
