@@ -4,7 +4,7 @@
 
 Still under development, but feel free to read and break everything 😁
 
-> Any pull requests or issues is appreciated
+> Any pull requests or issues are appreciated
 
 ## Build with
 
