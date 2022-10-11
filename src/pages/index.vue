@@ -26,7 +26,7 @@ useHead({
 
         <br />
 
-        <span>{{ formatDate(new Date(page.createdAt)) }}</span>
+        <small>{{ formatDate(new Date(page.meta.date)) }}</small>
       </li>
     </ul>
   </div>
@@ -49,9 +49,7 @@ div[index-page] {
       color: var(--color-blossom);
     }
 
-    & > span {
-      font-size: 90%;
-
+    & > small {
       margin-bottom: 1rem;
 
       opacity: 0.5;
