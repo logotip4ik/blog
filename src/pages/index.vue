@@ -1,7 +1,7 @@
 <script setup>
 import pages from '~pages';
 
-const posts = computed(() => pages.filter((page) => page.path.includes('/p')));
+const posts = computed(() => pages.filter((page) => page.path.includes('/p')).sort((a, b) => a.createdAt - b.createdAt));
 
 useHead({
   title: 'Blog',
@@ -24,7 +24,7 @@ useHead({
           {{ page.meta.title }}
         </RouterLink>
 
-        <span>&nbsp;{{ formatDate(page.createAt) }}</span>
+        <span>&nbsp;{{ formatDate(new Date(page.createdAt)) }}</span>
       </li>
     </ul>
   </div>
