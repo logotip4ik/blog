@@ -21,7 +21,7 @@ useHead({
     <ul>
       <li v-for="page in posts" :key="page.path">
         <RouterLink :to="page.path">
-          {{ filenameToRouteName(page.filename) }}
+          {{ page.meta.title }}
         </RouterLink>
 
         <span>&nbsp;{{ formatDate(page.createAt) }}</span>
