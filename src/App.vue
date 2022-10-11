@@ -59,7 +59,7 @@ function leavePageAnim(pageEl, done) {
 function animateBackgroundWithRoute(route) {
   const prefixes = ['/p'];
 
-  const dimmed = isDark ? 0.65 : 0.55;
+  const dimmed = isDark.value ? 0.5 : 0.55;
 
   return new Promise((resolve) =>
     animate({
