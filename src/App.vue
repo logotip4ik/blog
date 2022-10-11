@@ -59,17 +59,20 @@ function leavePageAnim(pageEl, done) {
 function animateBackgroundWithRoute(route) {
   const prefixes = ['/p'];
 
-  const dimmed = isDark.value ? 0.5 : 0.55;
+  const dimmed = isDark.value ? 0.45 : 0.45;
+  const markdownPage = prefixes.some((prefix) => route.includes(prefix));
 
-  return new Promise((resolve) =>
-    animate({
-      from: background.value.options.colorStrength || 0,
-      to: prefixes.some((prefix) => route.includes(prefix)) ? dimmed : 1,
-      duration: 500,
-      onUpdate: (colorStrength) => Object.assign(background.value.options, { colorStrength }),
-      onComplete: () => resolve(),
-    })
-  );
+  animate({
+    from: background.value.options.colorStrength || 0,
+    to: markdownPage ? dimmed : 1,
+    onUpdate: (colorStrength) => Object.assign(background.value.options, { colorStrength }),
+  });
+
+  animate({
+    from: background.value.options.speedMultiplier || 1,
+    to: markdownPage ? 0.35 : 1,
+    onUpdate: (speedMultiplier) => Object.assign(background.value.options, { speedMultiplier }),
+  });
 }
 
 watch(() => route.fullPath, animateBackgroundWithRoute);
