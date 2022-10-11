@@ -96,7 +96,7 @@ export default defineConfig(async () => {
       Markdown({
         headEnabled: true,
         wrapperClasses: false,
-        wrapperComponent: 'WithBackgroundOverlay',
+        wrapperComponent: 'MarkdownOutlet',
         markdownItOptions: { typographer: true },
         markdownItSetup: (markdownit) => {
           markdownit.use(MarkdownItAnchor, { permalink: MarkdownItAnchor.permalink.ariaHidden({ class: '', placement: 'before' }) });
