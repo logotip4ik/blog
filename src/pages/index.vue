@@ -34,8 +34,14 @@ useHead({
 
 <style lang="scss">
 div[index-page] {
-  h1 + p {
-    margin-bottom: 5rem;
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header + p {
+    margin-bottom: 4rem;
   }
 
   li {
@@ -50,12 +56,6 @@ div[index-page] {
 
       opacity: 0.5;
     }
-  }
-
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 }
 </style>
