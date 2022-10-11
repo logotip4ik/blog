@@ -24,6 +24,5 @@ export function getScrollbarWidth() {
 
 /** @param {Date} createdAt */
 export function formatDate(createdAt) {
-  console.log(createdAt);
   return Intl.DateTimeFormat(undefined, { day: '2-digit', month: 'short', year: 'numeric' }).format(createdAt);
 }
