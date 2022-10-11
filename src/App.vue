@@ -3,6 +3,8 @@ import { animate } from 'popmotion';
 
 const route = useRoute();
 
+const { isDark } = useDarkMode();
+
 /** @type {import('vue').Ref<HTMLElement | null>} */
 const backgroundOverlay = ref(null);
 /** @type {import('vue').Ref<HTMLElement | null>} */
@@ -49,6 +51,34 @@ function leavePageAnim(pageEl, done) {
     onComplete: () => done(),
   });
 }
+
+/**
+ * @param {string} route
+ * @returns {Promise<void>}
+ */
+function animateBackgroundWithRoute(route) {
+  const prefixes = ['/p'];
+
+  const dimmed = isDark ? 0.65 : 0.55;
+
+  return new Promise((resolve) =>
+    animate({
+      from: background.value.options.colorStrength || 0,
+      to: prefixes.some((prefix) => route.includes(prefix)) ? dimmed : 1,
+      duration: 500,
+      onUpdate: (colorStrength) => Object.assign(background.value.options, { colorStrength }),
+      onComplete: () => resolve(),
+    })
+  );
+}
+
+watch(() => route.fullPath, animateBackgroundWithRoute);
+
+onMounted(() => {
+  animateBackgroundWithRoute(route.fullPath);
+
+  setTimeout(() => enterPageAnim(pageContent.value, () => null), 300);
+});
 </script>
 
 <template>
@@ -58,7 +88,7 @@ function leavePageAnim(pageEl, done) {
 
   <div ref="pageContent" content style="opacity: 0">
     <RouterView v-slot="{ Component }">
-      <Transition :css="false" @enter="enterPageAnim" @leave="leavePageAnim" mode="out-in">
+      <Transition mode="out-in" :css="false" @enter="enterPageAnim" @leave="leavePageAnim">
         <KeepAlive>
           <Component :is="Component" />
         </KeepAlive>

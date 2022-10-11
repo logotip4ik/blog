@@ -76,6 +76,7 @@ defineExpose({ canvas, overlay, options });
 
 let firstChange = true;
 watch(isDark, (value) => {
+  // color scheme
   let from;
   let to;
 
@@ -96,6 +97,14 @@ watch(isDark, (value) => {
   for (let i = 0; i < from.length; i += 1)
     for (let j = 0; j < from[0].length; j += 1)
       animate({ from: from[i][j], to: to[i][j], onUpdate: (newColor) => (colors[i][j] = newColor) });
+
+  // clear color
+  from = options.clearColor;
+  to = normalizeRgb(isDark.value ? [34, 34, 34] : [255, 255, 255]);
+
+  // prettier-ignore
+  for (let i = 0; i < from.length; i += 1)
+    animate({ from: from[i], to: to[i], onUpdate: (newColor) => (options.clearColor[i] = newColor) });
 });
 
 onMounted(() => {
@@ -176,16 +185,10 @@ onMounted(() => {
   window.addEventListener('resize', resizer, false);
 
   const content = document.querySelector('div[content]');
-  animate({
-    from: options.colorStrength,
-    to: 1,
-    duration: 500,
-    onUpdate: (val) => (options.colorStrength = val),
-    onPlay: () => animate({ from: 0, to: 1, elapsed: -300, onUpdate: (opacity) => Object.assign(content.style, { opacity }) }),
-  });
 
   onBeforeUnmount(() => {
     raf.remove(renderFunction);
+    removeColorSchemeListener();
 
     window.removeEventListener('resize', resizer);
   });
@@ -198,7 +201,7 @@ onMounted(() => {
 
 <style lang="scss">
 canvas {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: -1;
