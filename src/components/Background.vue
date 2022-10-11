@@ -188,7 +188,6 @@ onMounted(() => {
 
   onBeforeUnmount(() => {
     raf.remove(renderFunction);
-    removeColorSchemeListener();
 
     window.removeEventListener('resize', resizer);
   });
