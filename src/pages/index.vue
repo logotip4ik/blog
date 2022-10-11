@@ -24,7 +24,9 @@ useHead({
           {{ page.meta.title }}
         </RouterLink>
 
-        <span>&nbsp;{{ formatDate(new Date(page.createdAt)) }}</span>
+        <br />
+
+        <span>{{ formatDate(new Date(page.createdAt)) }}</span>
       </li>
     </ul>
   </div>
@@ -36,8 +38,18 @@ div[index-page] {
     margin-bottom: 5rem;
   }
 
-  li > span {
-    float: right;
+  li {
+    &::marker {
+      color: var(--color-blossom);
+    }
+
+    & > span {
+      font-size: 90%;
+
+      margin-bottom: 1rem;
+
+      opacity: 0.5;
+    }
   }
 
   header {
