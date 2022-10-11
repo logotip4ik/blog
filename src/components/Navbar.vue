@@ -88,7 +88,7 @@ nav {
         color: white;
         border-color: currentColor;
 
-        background: transparent;
+        background: none;
       }
 
       @media print {
