@@ -58,7 +58,6 @@ export default defineConfig(async () => {
           const componentPath = resolve(__dirname, normalizedComponentPath);
 
           const routeContent = readFileSync(componentPath);
-          const routeInfo = statSync(componentPath);
           const { name, ext } = parse(componentPath);
           const { data: meta } = matter(routeContent);
 
@@ -66,8 +65,6 @@ export default defineConfig(async () => {
             meta,
             ext,
             filename: name,
-            updatedAt: routeInfo.mtime,
-            createdAt: routeInfo.birthtime,
           };
 
           const prefixTypeMapper = { '/p': 'post' };

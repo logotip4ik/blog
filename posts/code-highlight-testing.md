@@ -1,6 +1,7 @@
 ---
 title: code highlighting testing
 tags: [typescript, shiki, vite-ssg]
+date: 2022/10/11
 draft: true
 ---
 

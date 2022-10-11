@@ -1,7 +1,10 @@
 ---
 title: How to combine GSAP and Nuxt3
 description: Little tutorial on how to implement gsap into nuxt3
-tags: [gsap, nuxt3]
+date: 2022/09/23
+tags:
+  - gsap
+  - nuxt3
 ---
 
 # How to combine GSAP and Nuxt3
