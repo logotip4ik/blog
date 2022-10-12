@@ -2,7 +2,7 @@
 
 # Blog
 
-Still under development, but feel free to read and break everything 😁
+Still under development, but feel free to read and break everything 😁. Also one of main challenges is to use as little as possible of classes selectors, exception is code highlighting and that's why [sakura](https://github.com/oxalorg/sakura) (classless CSS framework / theme) was choosen
 
 > Any pull requests or issues are appreciated
 
@@ -14,7 +14,7 @@ Still under development, but feel free to read and break everything 😁
 
 - [OGL](https://github.com/oframe/ogl) - background, smaller that threejs
 
-- [Sakura.css](https://github.com/oxalorg/sakura) - instead of building styles from ground up, used this and added some minor changes to specific areas
+- [Sakura](https://github.com/oxalorg/sakura) - instead of building styles from ground up, used this and added some minor changes to specific areas
 
 - [shiki](https://shiki.matsu.io) - used for syntax highlighting in markdown
 
