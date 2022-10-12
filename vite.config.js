@@ -23,6 +23,8 @@ export default defineConfig(async () => {
     langs: ['js', 'ts', 'html', 'css', 'sh'],
   });
 
+  const isDev = process.env.NODE_ENV === 'development';
+
   return {
     plugins: [
       Vue({ include: [/\.vue$/, /\.md$/] }),
@@ -34,7 +36,7 @@ export default defineConfig(async () => {
           { dir: 'posts', baseRoute: 'p' },
         ],
         onRoutesGenerated(routes) {
-          if (process.env.NODE_ENV === 'development') return routes;
+          if (isDev) return routes;
 
           const newRoutes = [];
 
@@ -88,7 +90,7 @@ export default defineConfig(async () => {
         dts: true,
       }),
 
-      GLSL(),
+      GLSL({ compress: !isDev }),
 
       Markdown({
         headEnabled: true,
