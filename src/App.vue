@@ -89,7 +89,7 @@ onMounted(() => {
 
   <Navbar />
 
-  <div ref="pageContent" content style="opacity: 0">
+  <div ref="pageContent" content>
     <RouterView v-slot="{ Component }">
       <Transition mode="out-in" :css="false" @enter="enterPageAnim" @leave="leavePageAnim">
         <KeepAlive>

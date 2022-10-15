@@ -17,8 +17,22 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <title>Blog</title>
+
+    <style>
+      div[content] {
+        opacity: 0;
+      }
+    </style>
   </head>
   <body>
+    <noscript>
+      <style>
+        div[content] {
+          opacity: 1;
+        }
+      </style>
+    </noscript>
+
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
   </body>
