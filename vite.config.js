@@ -33,7 +33,7 @@ export default defineConfig(async () => {
         extensions: ['vue', 'md'],
         dirs: [
           { dir: 'src/pages', baseRoute: '' },
-          { dir: 'posts', baseRoute: 'p' },
+          { dir: 'content/posts', baseRoute: 'p' },
         ],
         onRoutesGenerated(routes) {
           if (isDev) return routes;

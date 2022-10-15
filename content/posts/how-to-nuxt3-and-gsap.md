@@ -53,7 +53,7 @@ export default defineNuxtPlugin(() => {
   gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
   // later you can use them by deconstructing useNuxtApp composable
-  // but everything you put in provide will be prefixed with `$` symbol to
+  // but everything you put in provide will be prefixed with $ symbol to
   // prevent some collisions
   return { provide: { gsap, ScrollToPlugin, ScrollTrigger } };
 });
