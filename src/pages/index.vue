@@ -27,6 +27,10 @@ useHead({
         <br />
 
         <small>{{ formatDate(new Date(page.meta.date)) }}</small>
+
+        <small v-if="page.meta.tags && page.meta.tags.length !== 0">
+          | <template v-for="(tag, key) in page.meta.tags" :key="key"> #{{ tag }} </template>
+        </small>
       </li>
     </ul>
   </div>
