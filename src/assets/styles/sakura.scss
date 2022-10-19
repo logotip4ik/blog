@@ -340,3 +340,17 @@ fieldset {
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  :focus-visible {
+    transition: outline-offset 75ms;
+  }
+
+  :not(:active):focus-visible {
+    transition-duration: 0.2s;
+  }
+}
+
+:not(:active):focus-visible {
+  outline-offset: 0.175rem;
+}
