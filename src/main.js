@@ -1,5 +1,5 @@
 import 'normalize.css/normalize.css';
-import '@fontsource/ibm-plex-sans';
+import '@fontsource/ibm-plex-sans/latin.css';
 import '~assets/fonts/styles.css';
 import '~assets/styles/sakura.scss';
 import '~assets/styles/code.scss';
