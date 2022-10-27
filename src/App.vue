@@ -50,11 +50,12 @@ function leavePageAnim(pageEl, done) {
     onUpdate: (opacity) => Object.assign(pageEl.style, { opacity }),
     onComplete: () => done(),
   });
+
+  setTimeout(() => animateBackgroundWithRoute(route.fullPath), shouldScrollToTop ? 700 : 0);
 }
 
 /**
- * @param {string} route
- * @returns {Promise<void>}
+ * @param {string} route use route.fullPath
  */
 function animateBackgroundWithRoute(route) {
   const prefixes = ['/p'];
@@ -74,8 +75,6 @@ function animateBackgroundWithRoute(route) {
     onUpdate: (speedMultiplier) => Object.assign(background.value.options, { speedMultiplier }),
   });
 }
-
-watch(() => route.fullPath, animateBackgroundWithRoute);
 
 onMounted(() => {
   animateBackgroundWithRoute(route.fullPath);
