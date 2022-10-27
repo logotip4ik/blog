@@ -180,14 +180,12 @@ onMounted(() => {
 
   resizer();
 
-  raf.add(renderFunction);
+  const rafId = raf.add(renderFunction);
 
   window.addEventListener('resize', resizer, false);
 
-  const content = document.querySelector('div[content]');
-
   onBeforeUnmount(() => {
-    raf.remove(renderFunction);
+    raf.remove(rafId);
 
     window.removeEventListener('resize', resizer);
   });
