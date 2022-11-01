@@ -38,7 +38,7 @@ useHead({
 
 <style lang="scss">
 div[index-page] {
-  min-height: 52vh;
+  min-height: 46vh;
 
   header {
     display: flex;
