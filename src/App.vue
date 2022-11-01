@@ -6,8 +6,6 @@ const route = useRoute();
 const { isDark } = useDarkMode();
 
 /** @type {import('vue').Ref<HTMLElement | null>} */
-const backgroundOverlay = ref(null);
-/** @type {import('vue').Ref<HTMLElement | null>} */
 const pageContent = ref(null);
 const background = ref(null);
 const footer = ref(null);
