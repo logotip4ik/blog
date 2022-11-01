@@ -10,6 +10,7 @@ const backgroundOverlay = ref(null);
 /** @type {import('vue').Ref<HTMLElement | null>} */
 const pageContent = ref(null);
 const background = ref(null);
+const footer = ref(null);
 
 /**
  * @param {HTMLElement} pageEl
@@ -18,11 +19,15 @@ const background = ref(null);
 function enterPageAnim(pageEl, done) {
   // fix from initially blinking content because onUpdate gives not zero value at the beginning
   Object.assign(pageEl.style, { opacity: 0 });
+  Object.assign(footer.value.$el.style, { opacity: 0 });
 
   animate({
     from: 0,
     to: 1,
-    onUpdate: (opacity) => Object.assign(pageEl.style, { opacity }),
+    onUpdate: (opacity) => {
+      Object.assign(pageEl.style, { opacity });
+      Object.assign(footer.value.$el.style, { opacity });
+    },
     onComplete: () => done(),
   });
 }
@@ -47,7 +52,10 @@ function leavePageAnim(pageEl, done) {
     elapsed: shouldScrollToTop ? -700 : 0,
     from: 1,
     to: 0,
-    onUpdate: (opacity) => Object.assign(pageEl.style, { opacity }),
+    onUpdate: (opacity) => {
+      Object.assign(pageEl.style, { opacity });
+      Object.assign(footer.value.$el.style, { opacity });
+    },
     onComplete: () => done(),
   });
 
@@ -97,6 +105,8 @@ onMounted(() => {
       </Transition>
     </RouterView>
   </div>
+
+  <Footer ref="footer" />
 </template>
 
 <style lang="scss">
