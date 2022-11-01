@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port 3000",
-    "build": "vite-ssg build & pnpm postbuild",
+    "build": "vite-ssg build",
     "postbuild": "subfont ./dist/index.html -ir",
     "preview": "vite preview"
   },
