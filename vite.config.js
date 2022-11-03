@@ -8,6 +8,7 @@ import SvgLoader from 'vite-svg-loader';
 import Markdown from 'vite-plugin-vue-markdown';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
+import CloudflareHeaders from 'unplugin-cloudflare-headers/vite';
 
 import matter from 'gray-matter';
 import generateSitemap from 'vite-ssg-sitemap';
@@ -101,6 +102,16 @@ export default defineConfig(async () => {
           markdownit.use(MarkdownItAnchor, { permalink: MarkdownItAnchor.permalink.ariaHidden({ class: '', placement: 'before' }) });
           markdownit.use(shiki);
         },
+      }),
+
+      CloudflareHeaders({
+        '/*': [
+          { 'X-Robots-Tag': 'all' },
+          { 'X-Frame-Options': 'DENY' },
+          { 'X-Content-Type-Options': 'nosniff' },
+          { 'Referrer-Policy': 'no-referrer' },
+          { 'Permissions-Policy': 'document-domain=()' },
+        ],
       }),
     ],
 
