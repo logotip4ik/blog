@@ -1,13 +1,20 @@
 {
   "name": "blog-vite",
-  "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "author": {
+    "name": "Bogdan Kostyuk",
+    "email": "contact@bogdankostyuk.xyz",
+    "url": "https://bogdankostyuk.xyz"
+  },
   "scripts": {
     "dev": "vite --port 3000",
     "build": "vite-ssg build",
     "postbuild": "subfont ./dist/index.html -ir",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "browserslist": "last 5 versions, not dead, not IE 11",
   "dependencies": {
@@ -32,9 +39,10 @@
     "vue-router": "^4.1.5"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^0.29.3",
     "@vitejs/plugin-vue": "^3.1.0",
+    "eslint": "^8.26.0",
     "gray-matter": "^4.0.3",
-    "prettier": "^2.7.1",
     "unplugin-cloudflare-headers": "^0.1.2",
     "vite": "^3.1.0"
   }
