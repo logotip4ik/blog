@@ -38,8 +38,6 @@ useHead({
 
 <style lang="scss">
 div[index-page] {
-  min-height: 46vh;
-
   header {
     display: flex;
     justify-content: space-between;
