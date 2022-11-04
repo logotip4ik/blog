@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import { join, resolve, parse } from 'path';
-import { statSync, readFileSync } from 'fs';
+import { readFileSync } from 'fs';
 import Vue from '@vitejs/plugin-vue';
 import GLSL from 'vite-plugin-glsl';
 import Pages from 'vite-plugin-pages';
