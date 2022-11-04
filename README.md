@@ -6,7 +6,7 @@
 
 Still under development, but feel free to read and break everything 😁. Also one of main challenges is to use as little as possible of classes selectors, exception is code highlighting and that's why [sakura](https://github.com/oxalorg/sakura) (classless CSS framework / theme) was choosen
 
-<code>code is licensed under <a href='./LICENSE'>MIT</a>,<br> content in website is licensed under <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>CC BY-NC-SA 4.0</a></code>.
+<samp>code is licensed under <a href='./LICENSE'>MIT</a>,<br> content in website is licensed under <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>CC BY-NC-SA 4.0</a></samp>.
 
 ## Build with
 
