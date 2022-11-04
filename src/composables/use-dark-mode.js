@@ -1,4 +1,4 @@
-import { reactive, onMounted, onBeforeUnmount, toRefs } from 'vue';
+import { onBeforeUnmount, onMounted, reactive, toRefs } from 'vue';
 
 export default function (options = { fallbackIsDark: false }) {
   const returnValue = reactive({
@@ -13,14 +13,14 @@ export default function (options = { fallbackIsDark: false }) {
     for (const callback of returnValue.callbacks.values()) if (typeof callback === 'function') callback(returnValue);
   };
 
+  const offColorSchemeChange = (callback) => {
+    returnValue.callbacks.delete(callback);
+  };
+
   const onColorSchemeChange = (callback) => {
     returnValue.callbacks.set(callback, callback);
 
     return () => offColorSchemeChange(callback);
-  };
-
-  const offColorSchemeChange = (callback) => {
-    returnValue.callbacks.delete(callback);
   };
 
   onMounted(() => {

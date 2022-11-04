@@ -1,10 +1,9 @@
 <script setup>
+import { animate } from 'popmotion';
+import { Camera, Color, Mesh, Plane, Program, Renderer, Transform, Vec2 } from 'ogl';
+
 import fragmentShader from '~assets/shaders/fragment.glsl';
 import vertexShader from '~assets/shaders/vertex.glsl';
-
-import { ref, onMounted, onBeforeUnmount } from 'vue';
-import { animate } from 'popmotion';
-import { Renderer, Transform, Camera, Plane, Program, Mesh, Color, Vec2 } from 'ogl';
 
 const raf = useRaf();
 const { isDark } = useDarkMode();
@@ -83,7 +82,8 @@ watch(isDark, (value) => {
   if (value) {
     from = lightColors;
     to = darkColors;
-  } else if (!value) {
+  }
+  else if (!value) {
     from = darkColors;
     to = lightColors;
   }
@@ -94,9 +94,10 @@ watch(isDark, (value) => {
   }
 
   // prettier-ignore
-  for (let i = 0; i < from.length; i += 1)
+  for (let i = 0; i < from.length; i += 1) {
     for (let j = 0; j < from[0].length; j += 1)
       animate({ from: from[i][j], to: to[i][j], onUpdate: (newColor) => (colors[i][j] = newColor) });
+  }
 
   // clear color
   from = options.clearColor;

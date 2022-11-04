@@ -39,7 +39,9 @@ onMounted(() => {
 <template>
   <nav>
     <transition name="fade">
-      <button v-if="showBackArrow" ref="backButton" arrow-back @click="$router.back()">go back</button>
+      <button v-if="showBackArrow" ref="backButton" arrow-back @click="$router.back()">
+        go back
+      </button>
     </transition>
   </nav>
 </template>

@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite';
-import { join, resolve, parse } from 'path';
 import { readFileSync } from 'fs';
+import { join, parse, resolve } from 'path';
+import { defineConfig } from 'vite';
 import Vue from '@vitejs/plugin-vue';
 import GLSL from 'vite-plugin-glsl';
 import Pages from 'vite-plugin-pages';
@@ -44,11 +44,14 @@ export default defineConfig(async () => {
           for (const route of routes) {
             const normalizedComponentPath = route.component.slice(1);
             const componentPath = resolve(__dirname, normalizedComponentPath);
-            const postContents = readFileSync(componentPath, { encoding: 'utf-8' });
+            const postContents = readFileSync(componentPath, {
+              encoding: 'utf-8',
+            });
 
             const { data, isEmpty } = matter(postContents);
 
             if (isEmpty) continue;
+
             if (!data.draft) newRoutes.push(route);
           }
 
@@ -71,7 +74,8 @@ export default defineConfig(async () => {
           };
 
           const prefixTypeMapper = { '/p': 'post' };
-          for (const [prefix, type] in Object.entries(prefixTypeMapper)) if (route.path.includes(prefix)) info.type = type;
+          for (const [prefix, type] in Object.entries(prefixTypeMapper))
+            if (route.path.includes(prefix)) info.type = type;
 
           return { ...route, ...info };
         },
@@ -99,7 +103,12 @@ export default defineConfig(async () => {
         wrapperComponent: 'MarkdownOutlet',
         markdownItOptions: { typographer: true },
         markdownItSetup: (markdownit) => {
-          markdownit.use(MarkdownItAnchor, { permalink: MarkdownItAnchor.permalink.ariaHidden({ class: '', placement: 'before' }) });
+          markdownit.use(MarkdownItAnchor, {
+            permalink: MarkdownItAnchor.permalink.ariaHidden({
+              class: '',
+              placement: 'before',
+            }),
+          });
           markdownit.use(shiki);
         },
       }),
