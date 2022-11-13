@@ -17,9 +17,7 @@ This started from my personal portfolio and person asked how I implemented GSAP 
 
 So we will assume that you have working nuxt3 website and installed gsap (latest version recommended). First of all you need tell nuxt to transpile gsap so you can import it without getting some errors. Nuxt3 has compatible with Nuxt2 configuration, so we will just add this:
 
-```javascript
-// ~/nuxt.config.js
-
+```javascript title="nuxt.config.js"
 // you can omit this line in nuxt3 rc.10+
 import { defineNuxtConfig } from 'nuxt';
 
@@ -34,15 +32,11 @@ export default defineNuxtConfig({
 });
 ```
 
-into our `nuxt.config.[js|ts]`
-
 ## Registering GSAP and its plugins in Nuxt
 
 We need to import gsap and register plugins as soon as possible, before every component or page, in order to correctly use it. I found a pretty straightforward solution - use Nuxt plugins. To do so we will create with a file with name `gsap.js` (example) in `plugins` directory (you may need to create it). This file will do be executed on server as well as on client side and it is totally ok, cuz we are transpiling gsap.
 
-```javascript
-// ~/plugins/gsap.js
-
+```javascript title="plugins/gsap.js"
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
@@ -63,9 +57,7 @@ export default defineNuxtPlugin(() => {
 
 At this point gsap is imported, plugins are registered, so you can use it as is. But to make code more readable and elegant, we will create the gsap composable that will be auto imported in every vue component. Touch a new file `use-gsap.js` in `composables` directory, and put some similar code to this:
 
-```javascript
-// ~/composables/use-gsap.js
-
+```javascript title="composables/use-gsap.js"
 export default () => {
   // auto imported by nuxt
   const nuxtApp = useNuxtApp();
