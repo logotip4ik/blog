@@ -50,7 +50,10 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   padding: 13px;
+  padding-top: 35vh;
 
+  overflow-y: scroll;
+  
   transition: color var(--default-ease-with-timings);
 
   @media (max-width: 760px) {
@@ -239,6 +242,14 @@ pre code {
   background-color: transparent;
   white-space: pre;
   font-size: 1em;
+}
+
+pre,
+code,
+blockquote {
+  border-radius: 0.2rem;
+
+  box-shadow: 0 0 0.25rem rgba($color: #000, $alpha: 0.075);
 }
 
 /* Tables */
