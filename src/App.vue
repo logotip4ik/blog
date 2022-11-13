@@ -35,29 +35,33 @@ function enterPageAnim(pageEl, done) {
  * @param {function} done
  */
 function leavePageAnim(pageEl, done) {
-  const shouldScrollToTop = window.scrollY !== 0;
+  const animateScroll = (from = window.scrollY, to = 0) => new Promise((resolve) => {
+    if (window.scrollY === to) return resolve();
 
-  if (shouldScrollToTop) {
     animate({
-      from: window.scrollY,
-      to: 0,
+      from,
+      to,
       duration: 500,
-      onUpdate: (scrollTop) => Object.assign(document.documentElement, { scrollTop }),
+      restSpeed: 0,
+      restDelta: 0.01,
+      onUpdate: (scrollTop) => Object.assign(window, { scrollTop }),
+      onComplete: () => resolve(),
     });
-  }
-
-  animate({
-    elapsed: shouldScrollToTop ? -700 : 0,
-    from: 1,
-    to: 0,
-    onUpdate: (opacity) => {
-      Object.assign(pageEl.style, { opacity });
-      Object.assign(footer.value.$el.style, { opacity });
-    },
-    onComplete: () => done(),
   });
 
-  setTimeout(() => animateBackgroundWithRoute(route.fullPath), shouldScrollToTop ? 700 : 0);
+  animateScroll().then(() => {
+    animate({
+      from: 1,
+      to: 0,
+      onUpdate: (opacity) => {
+        Object.assign(pageEl.style, { opacity });
+        Object.assign(footer.value.$el.style, { opacity });
+      },
+      onComplete: () => done(),
+    });
+
+    animateBackgroundWithRoute(route.fullPath);
+  });
 }
 
 /**
