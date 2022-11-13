@@ -86,6 +86,8 @@ function animateBackgroundWithRoute(route) {
   });
 }
 
+// TODO: scroll back to user's previous position
+
 onMounted(() => {
   animateBackgroundWithRoute(route.fullPath);
 
