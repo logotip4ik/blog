@@ -89,7 +89,7 @@ export default defineConfig(async () => {
       }),
 
       AutoImport({
-        imports: ['vue', 'vue-router', '@vueuse/head'],
+        imports: ['vue', 'vue-router', '@vueuse/core', '@vueuse/head'],
         dirs: ['src/composables', 'src/helpers'],
         vueTemplate: true,
         dts: true,
