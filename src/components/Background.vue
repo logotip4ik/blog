@@ -5,8 +5,7 @@ import { Camera, Color, Mesh, Plane, Program, Renderer, Transform, Vec2 } from '
 import fragmentShader from '~assets/shaders/fragment.glsl';
 import vertexShader from '~assets/shaders/vertex.glsl';
 
-const raf = useRaf();
-const { isDark } = useDarkMode();
+const isDark = useDark();
 
 /** @type {import('vue').Ref<HTMLElement | null>} */
 const canvas = ref(null);
@@ -181,12 +180,12 @@ onMounted(() => {
 
   resizer();
 
-  const rafId = raf.add(renderFunction);
+  const { pause } = useRafFn(renderFunction);
 
   window.addEventListener('resize', resizer, false);
 
   onBeforeUnmount(() => {
-    raf.remove(rafId);
+    pause();
 
     window.removeEventListener('resize', resizer);
   });
