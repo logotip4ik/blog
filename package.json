@@ -30,7 +30,7 @@
     "subfont": "^6.12.2",
     "unplugin-auto-import": "^0.12.0",
     "unplugin-vue-components": "^0.22.11",
-    "vite-plugin-glsl": "^0.5.4",
+    "vite-plugin-glsl": "^1.0.0",
     "vite-plugin-pages": "^0.27.1",
     "vite-plugin-vue-markdown": "^0.22.1",
     "vite-ssg": "^0.22.0",

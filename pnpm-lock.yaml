@@ -19,7 +19,7 @@ specifiers:
   unplugin-cloudflare-headers: ^0.1.2
   unplugin-vue-components: ^0.22.11
   vite: ^4.0.0
-  vite-plugin-glsl: ^0.5.4
+  vite-plugin-glsl: ^1.0.0
   vite-plugin-pages: ^0.27.1
   vite-plugin-vue-markdown: ^0.22.1
   vite-ssg: ^0.22.0
@@ -41,7 +41,7 @@ dependencies:
   subfont: 6.12.2
   unplugin-auto-import: 0.12.0_@vueuse+core@9.6.0
   unplugin-vue-components: 0.22.11_vue@3.2.45
-  vite-plugin-glsl: 0.5.4_vite@4.0.0
+  vite-plugin-glsl: 1.0.0_vite@4.0.0
   vite-plugin-pages: 0.27.1_vite@4.0.0
   vite-plugin-vue-markdown: 0.22.1_vite@4.0.0
   vite-ssg: 0.22.0_dxdttb3o2cjjnpmmhmzt7wftka
@@ -5262,11 +5262,11 @@ packages:
       spdx-correct: 3.1.1
       spdx-expression-parse: 3.0.1
 
-  /vite-plugin-glsl/0.5.4_vite@4.0.0:
-    resolution: {integrity: sha512-vc2/vWHq6TG/+qgmZXCzDFhXliRU1KFZ14SDnCilVJBJJb8WVI3AhbnWNGomMQyR5X27Kd2S/Mjvkbl3BqervA==}
-    engines: {node: '>= 16.15.1', npm: '>= 8.11.0'}
+  /vite-plugin-glsl/1.0.0_vite@4.0.0:
+    resolution: {integrity: sha512-SD02wCvXM4yGzbJXcAZs0dEc5go+omya4niDbf8odLHKGW3IQ16I5XhTxZLUQlabvwIvr8+Pgl0NHVC4v08LkQ==}
+    engines: {node: '>= 18.12.1', npm: '>= 9.2.0'}
     peerDependencies:
-      vite: ^3.0.0
+      vite: ^3.0.0 || ^4.0.0
     dependencies:
       '@rollup/pluginutils': 5.0.2
       vite: 4.0.0_sass@1.56.2
