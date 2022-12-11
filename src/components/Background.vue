@@ -131,7 +131,8 @@ onMounted(() => {
 
   const objectSize = { width: 1.5, height: 1.5 };
 
-  if (window.innerHeight < window.innerWidth) objectSize.width *= aspect;
+  if (window.innerHeight < window.innerWidth)
+    objectSize.width *= aspect;
   if (window.innerWidth < window.innerHeight) {
     objectSize.height *= window.innerHeight / window.innerWidth;
 
