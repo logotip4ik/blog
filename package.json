@@ -28,23 +28,23 @@
     "popmotion": "^11.0.5",
     "sass": "^1.56.2",
     "subfont": "^6.12.2",
-    "unplugin-auto-import": "^0.12.0",
-    "unplugin-vue-components": "^0.22.11",
-    "vite-plugin-glsl": "^1.0.0",
-    "vite-plugin-pages": "^0.27.1",
+    "unplugin-auto-import": "^0.12.1",
+    "unplugin-vue-components": "^0.22.12",
+    "vite-plugin-glsl": "^1.0.1",
+    "vite-plugin-pages": "^0.28.0",
     "vite-plugin-vue-markdown": "^0.22.1",
-    "vite-ssg": "^0.22.0",
+    "vite-ssg": "^0.22.1",
     "vite-ssg-sitemap": "^0.4.3",
     "vite-svg-loader": "^3.6.0",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.33.1",
+    "@antfu/eslint-config": "^0.34.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "eslint": "^8.29.0",
     "gray-matter": "^4.0.3",
-    "unplugin-cloudflare-headers": "^0.1.2",
-    "vite": "^4.0.0"
+    "unplugin-cloudflare-headers": "0.3.1",
+    "vite": "^4.0.1"
   }
 }
