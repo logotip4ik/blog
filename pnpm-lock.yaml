@@ -8,6 +8,7 @@ specifiers:
   '@vueuse/head': ^1.0.22
   eslint: ^8.29.0
   gray-matter: ^4.0.3
+  image-size: ^1.0.2
   markdown-it-anchor: ^8.6.5
   markdown-it-shiki-twoslash: ^2.1.0
   normalize.css: ^8.0.1
@@ -15,6 +16,7 @@ specifiers:
   popmotion: ^11.0.5
   sass: ^1.56.2
   subfont: ^6.12.2
+  sync-fetch: ^0.4.2
   unplugin-auto-import: ^0.12.1
   unplugin-cloudflare-headers: 0.3.1
   unplugin-vue-components: ^0.22.12
@@ -32,6 +34,7 @@ dependencies:
   '@fontsource/ibm-plex-sans': 4.5.13
   '@vueuse/core': 9.6.0_vue@3.2.45
   '@vueuse/head': 1.0.22_vue@3.2.45
+  image-size: 1.0.2
   markdown-it-anchor: 8.6.5
   markdown-it-shiki-twoslash: 2.1.0
   normalize.css: 8.0.1
@@ -39,6 +42,7 @@ dependencies:
   popmotion: 11.0.5
   sass: 1.56.2
   subfont: 6.12.2
+  sync-fetch: 0.4.2
   unplugin-auto-import: 0.12.1_@vueuse+core@9.6.0
   unplugin-vue-components: 0.22.12_vue@3.2.45
   vite-plugin-glsl: 1.0.1_vite@4.0.1
@@ -2955,6 +2959,14 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
+  /image-size/1.0.2:
+    resolution: {integrity: sha512-xfOoWjceHntRb3qFCrh5ZFORYH8XCdYpASltMhZ/Q0KZiOwjdE/Yl2QCiWdwD+lygV5bMCvauzgu5PxBX/Yerg==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
+    dependencies:
+      queue: 6.0.2
+    dev: false
+
   /imageinfo/1.0.4:
     resolution: {integrity: sha512-BJml4q/QCO2187F4UcO/b6hTYIhbq4nnd1XNs65jyCED9em4m6XmeGWDxjewjfJoC7VJABhOdmqb64KA24rLZw==}
     engines: {node: '>=0.4'}
@@ -4347,6 +4359,12 @@ packages:
   /queue-microtask/1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
+  /queue/6.0.2:
+    resolution: {integrity: sha512-iHZWu+q3IdFZFX36ro/lKBkSvfkztY5Y7HMiPlOUjhupPcG2JMfst2KKEpu5XndviX/3UhFbRngUPNKtgvtZiA==}
+    dependencies:
+      inherits: 2.0.4
+    dev: false
+
   /read-file-stdin/0.2.1:
     resolution: {integrity: sha512-dAqysQ4kfj9m5aejZOPr+aRGXZJXdLkMOLZ3BXMwMBQHiO+aylGBFJPh88AYPQrOf+D43F4Uc2oUIW9kBlItLA==}
     dependencies:
@@ -4879,6 +4897,16 @@ packages:
 
   /symbol-tree/3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
+    dev: false
+
+  /sync-fetch/0.4.2:
+    resolution: {integrity: sha512-vilDD6yTGwyUjm7/W5WUUOCw1GH1aV591zC21XhbV6MJNZqfZcNMs9DVPHzy1UAmQ2GAg6S03F5TQ3paegKSdg==}
+    engines: {node: '>=14'}
+    dependencies:
+      buffer: 5.7.1
+      node-fetch: 2.6.7
+    transitivePeerDependencies:
+      - encoding
     dev: false
 
   /tar-fs/2.1.1:
