@@ -101,7 +101,7 @@ export default defineConfig(async () => {
 
       Markdown({
         headEnabled: true,
-        wrapperClasses: false,
+        wrapperClasses: '',
         wrapperComponent: 'MarkdownOutlet',
         markdownItOptions: { typographer: true },
         markdownItSetup: (markdownit) => {
@@ -128,7 +128,6 @@ export default defineConfig(async () => {
     ],
 
     ssgOptions: {
-      script: 'async',
       dirStyle: 'nested',
       formatting: 'minify',
 
@@ -150,7 +149,7 @@ export default defineConfig(async () => {
     build: { sourcemap: false },
 
     optimizeDeps: {
-      include: ['vue', 'vue-router', 'ogl', 'popmotion'],
+      include: ['vue', 'vue-router', 'ogl', 'popmotion', '@vueuse/core'],
     },
   };
 });
