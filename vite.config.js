@@ -15,6 +15,8 @@ import generateSitemap from 'vite-ssg-sitemap';
 import MarkdownItAnchor from 'markdown-it-anchor';
 import { markdownItShikiTwoslashSetup } from 'markdown-it-shiki-twoslash';
 
+import MarkdownItLazyImages from './markdownit/lazy-images';
+
 import sequoiaMoonlight from './src/assets/themes/sequoia-moonlight.json';
 
 // https://vitejs.dev/config/
@@ -110,6 +112,7 @@ export default defineConfig(async () => {
             }),
           });
           markdownit.use(shiki);
+          markdownit.use(MarkdownItLazyImages);
         },
       }),
 
