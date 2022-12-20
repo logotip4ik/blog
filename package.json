@@ -18,7 +18,7 @@
   },
   "browserslist": "last 5 versions, not dead, not IE 11",
   "engines": {
-    "node": ">=17.5"
+    "node": ">=17.5.0"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^4.5.13",
