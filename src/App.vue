@@ -86,6 +86,10 @@ function animateBackgroundWithRoute(route) {
   });
 }
 
+useHead({
+  titleTemplate: (title) => !title ? 'Blog' : `${title} | Blog`,
+});
+
 // TODO: scroll back to user's previous position
 
 onMounted(() => {
