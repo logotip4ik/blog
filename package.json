@@ -17,6 +17,9 @@
     "lint:fix": "eslint . --fix"
   },
   "browserslist": "last 5 versions, not dead, not IE 11",
+  "engines": {
+    "node": ">=17.5"
+  },
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^4.5.13",
     "@vueuse/core": "^9.6.0",
