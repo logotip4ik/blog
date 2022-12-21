@@ -6,6 +6,7 @@ specifiers:
   '@vitejs/plugin-vue': ^4.0.0
   '@vueuse/core': ^9.8.2
   '@vueuse/head': ^1.0.22
+  cross-env: ^7.0.3
   eslint: ^8.30.0
   gray-matter: ^4.0.3
   image-size: ^1.0.2
@@ -57,6 +58,7 @@ dependencies:
 devDependencies:
   '@antfu/eslint-config': 0.34.0_eslint@8.30.0
   '@vitejs/plugin-vue': 4.0.0_vite@4.0.2+vue@3.2.45
+  cross-env: 7.0.3
   eslint: 8.30.0
   gray-matter: 4.0.3
   unplugin-cloudflare-headers: 0.3.1
@@ -1496,6 +1498,14 @@ packages:
     resolution: {integrity: sha512-w9UZUtkaGd8MfS7eMG7Sa0lV5vCJghqQfiOnwNVrPhbZScUp5h0jwYoAF933MKlotlG1JAJOCCT3xU6r+SDKNw==}
     engines: {node: '>= 0.2.0'}
     dev: false
+
+  /cross-env/7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
+    dev: true
 
   /cross-spawn/7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
