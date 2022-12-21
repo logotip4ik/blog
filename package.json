@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "vite --port 3000",
-    "build": "vite-ssg build",
+    "build": "cross-env NODE_ENV=production vite-ssg build",
     "postbuild": "subfont ./dist/index.html -ir",
     "preview": "vite preview",
     "lint": "eslint .",
