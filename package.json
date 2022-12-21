@@ -49,5 +49,6 @@
     "gray-matter": "^4.0.3",
     "unplugin-cloudflare-headers": "0.3.1",
     "vite": "^4.0.2"
-  }
+  },
+  "packageManager": "pnpm@7.18.1"
 }
