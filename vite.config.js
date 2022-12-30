@@ -39,6 +39,8 @@ export default defineConfig(async () => {
           { dir: 'content/posts', baseRoute: 'p' },
         ],
         onRoutesGenerated(routes) {
+          console.log('\n\n\n\n\n', process.env.NODE_ENV);
+
           if (isDev) return routes;
 
           const newRoutes = [];
