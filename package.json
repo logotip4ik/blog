@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "vite --port 3000",
-    "build": "cross-env NODE_ENV=production vite-ssg build",
+    "build": "vite-ssg build",
     "postbuild": "subfont ./dist/index.html -ir",
     "preview": "vite preview",
     "lint": "eslint .",
@@ -44,7 +44,6 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.34.0",
     "@vitejs/plugin-vue": "^4.0.0",
-    "cross-env": "^7.0.3",
     "eslint": "^8.30.0",
     "gray-matter": "^4.0.3",
     "unplugin-cloudflare-headers": "0.3.1",
