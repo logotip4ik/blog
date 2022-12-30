@@ -79,6 +79,7 @@ nav {
 
       font-family: var(--font-family-heading);
       font-size: 2rem;
+      font-weight: 600;
       color: white;
 
       border: 1px solid transparent;
