@@ -26,7 +26,7 @@ export default defineConfig(async () => {
     langs: ['js', 'ts', 'html', 'css', 'sh'],
   });
 
-  const isDev = (process.env.NODE_ENV || 'development') === 'development';
+  const isDev = (process.env.NODE_ENV || 'production') === 'development';
 
   return {
     plugins: [
