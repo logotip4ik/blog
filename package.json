@@ -11,7 +11,6 @@
   "scripts": {
     "dev": "vite --port 3000",
     "build": "cross-env NODE_ENV=production vite-ssg build",
-    "postbuild": "subfont ./dist/index.html -ir",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
@@ -29,7 +28,6 @@
     "ogl": "^0.0.103",
     "popmotion": "^11.0.5",
     "sass": "^1.57.1",
-    "subfont": "^6.12.2",
     "sync-fetch": "^0.4.2",
     "unplugin-auto-import": "^0.12.1",
     "unplugin-vue-components": "^0.22.12",
