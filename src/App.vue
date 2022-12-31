@@ -3,7 +3,7 @@ import { animate } from 'popmotion';
 
 const route = useRoute();
 
-const isDark = useDark();
+const isDark = useDark({ valueDark: '' });
 
 /** @type {import('vue').Ref<HTMLElement | null>} */
 const pageContent = ref(null);
