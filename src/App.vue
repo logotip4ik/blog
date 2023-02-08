@@ -1,5 +1,5 @@
 <script setup>
-import { animate } from 'popmotion';
+import anime from 'animejs';
 
 const route = useRoute();
 
@@ -15,18 +15,12 @@ const footer = ref(null);
  * @param {function} done
  */
 function enterPageAnim(pageEl, done) {
-  // fix from initially blinking content because onUpdate gives not zero value at the beginning
-  Object.assign(pageEl.style, { opacity: 0 });
-  Object.assign(footer.value.$el.style, { opacity: 0 });
-
-  animate({
-    from: 0,
-    to: 1,
-    onUpdate: (opacity) => {
-      Object.assign(pageEl.style, { opacity });
-      Object.assign(footer.value.$el.style, { opacity });
-    },
-    onComplete: () => done(),
+  anime({
+    targets: [pageEl.style, footer.value.$el.style],
+    duration: 400,
+    opacity: [0, 1],
+    easing: 'easeOutQuad',
+    complete: done,
   });
 }
 
@@ -35,33 +29,16 @@ function enterPageAnim(pageEl, done) {
  * @param {function} done
  */
 function leavePageAnim(pageEl, done) {
-  const animateScroll = (from = window.scrollY, to = 0) => new Promise((resolve) => {
-    if (window.scrollY === to) return resolve();
-
-    animate({
-      from,
-      to,
-      duration: 500,
-      restSpeed: 0,
-      restDelta: 0.01,
-      onUpdate: (scrollTop) => Object.assign(window, { scrollTop }),
-      onComplete: () => resolve(),
-    });
+  // NOTE: chrome do not allow to mess around with scroll
+  anime({
+    targets: [pageEl.style, footer.value.$el.style],
+    duration: 400,
+    opacity: [1, 0],
+    easing: 'easeOutExpo',
+    complete: done,
   });
 
-  animateScroll().then(() => {
-    animate({
-      from: 1,
-      to: 0,
-      onUpdate: (opacity) => {
-        Object.assign(pageEl.style, { opacity });
-        Object.assign(footer.value.$el.style, { opacity });
-      },
-      onComplete: () => done(),
-    });
-
-    animateBackgroundWithRoute(route.fullPath);
-  });
+  animateBackgroundWithRoute(route.fullPath);
 }
 
 /**
@@ -73,22 +50,22 @@ function animateBackgroundWithRoute(route) {
   const dimmed = isDark.value ? 0.45 : 0.45;
   const markdownPage = prefixes.some((prefix) => route.includes(prefix));
 
-  animate({
-    from: background.value.options.colorStrength || 0,
-    to: markdownPage ? dimmed : 1,
-    onUpdate: (colorStrength) => Object.assign(background.value.options, { colorStrength }),
+  anime({
+    targets: background.value.options,
+    duration: 500,
+    colorStrength: [background.value.options.colorStrength || 0, markdownPage ? dimmed : 1],
+    easing: 'easeOutQuad',
   });
 
-  animate({
-    from: background.value.options.speedMultiplier || 1,
-    to: markdownPage ? 0.35 : 1,
-    onUpdate: (speedMultiplier) => Object.assign(background.value.options, { speedMultiplier }),
+  anime({
+    targets: background.value.options,
+    duration: 500,
+    speedMultiplier: [background.value.options.speedMultiplier || 1, markdownPage ? 0.35 : 1],
+    easing: 'easeOutQuad',
   });
 }
 
-useHead({
-  titleTemplate: (title) => !title ? 'Blog' : `${title} | Blog`,
-});
+useHead({ titleTemplate: (title) => !title ? 'Blog' : `${title} | Blog` });
 
 // TODO: scroll back to user's previous position
 
@@ -96,6 +73,8 @@ onMounted(() => {
   animateBackgroundWithRoute(route.fullPath);
 
   setTimeout(() => enterPageAnim(pageContent.value, () => null), 300);
+
+  window.$anime = anime;
 });
 </script>
 

@@ -1,9 +1,8 @@
 <script setup>
-import { animate } from 'popmotion';
 import { Camera, Color, Mesh, Plane, Program, Renderer, Transform, Vec2 } from 'ogl';
 
-import fragmentShader from '~assets/shaders/fragment.glsl';
-import vertexShader from '~assets/shaders/vertex.glsl';
+import fragmentShader from '~/assets/shaders/fragment.glsl';
+import vertexShader from '~/assets/shaders/vertex.glsl';
 
 const isDark = useDark();
 
@@ -72,39 +71,18 @@ function resize({ renderer, camera, object }) {
 
 defineExpose({ canvas, overlay, options });
 
-let firstChange = true;
-watch(isDark, (value) => {
+// TODO: animate transition of color scheme
+watch(isDark, (isDark) => {
   // color scheme
-  let from;
-  let to;
+  let to = isDark ? darkColors : lightColors;
 
-  if (value) {
-    from = lightColors;
-    to = darkColors;
-  }
-  else if (!value) {
-    from = darkColors;
-    to = lightColors;
-  }
-
-  if (firstChange) {
-    firstChange = false;
-    from = colors;
-  }
-
-  // prettier-ignore
-  for (let i = 0; i < from.length; i += 1) {
-    for (let j = 0; j < from[0].length; j += 1)
-      animate({ from: from[i][j], to: to[i][j], onUpdate: (newColor) => (colors[i][j] = newColor) });
-  }
+  for (let i = 0; i < to.length; i += 1)
+    colors[i] = to[i];
 
   // clear color
-  from = options.clearColor;
-  to = normalizeRgb(isDark.value ? [34, 34, 34] : [255, 255, 255]);
+  to = normalizeRgb(isDark ? [34, 34, 34] : [255, 255, 255]);
 
-  // prettier-ignore
-  for (let i = 0; i < from.length; i += 1)
-    animate({ from: from[i], to: to[i], onUpdate: (newColor) => (options.clearColor[i] = newColor) });
+  options.clearColor = to;
 });
 
 onMounted(() => {
