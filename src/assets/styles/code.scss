@@ -124,6 +124,8 @@ pre .code-title {
   position: absolute;
   top: 0;
   right: 0;
+  z-index: 1;
+  isolation: isolate;
   
   font-size: 16px;
   text-align: right;
