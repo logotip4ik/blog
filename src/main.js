@@ -1,8 +1,8 @@
 import 'normalize.css/normalize.css';
 import '@fontsource/ibm-plex-sans/latin.css';
-import '~assets/fonts/styles.css';
-import '~assets/styles/sakura.scss';
-import '~assets/styles/code.scss';
+import '~/assets/fonts/styles.css';
+import '~/assets/styles/sakura.scss';
+import '~/assets/styles/code.scss';
 
 import { ViteSSG } from 'vite-ssg';
 import App from './App.vue';

@@ -140,16 +140,13 @@ export default defineConfig(async () => {
     },
 
     resolve: {
-      alias: {
-        '~': join(__dirname, 'src'),
-        '~assets': join(__dirname, 'src', 'assets'),
-      },
+      alias: { '~': join(__dirname, 'src') },
     },
 
     build: { sourcemap: false },
 
     optimizeDeps: {
-      include: ['vue', 'vue-router', 'ogl', 'popmotion', '@vueuse/core'],
+      include: ['animejs', '@vueuse/head'],
     },
   };
 });
