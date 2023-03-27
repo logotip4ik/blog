@@ -12,7 +12,7 @@ Still under development, but feel free to read and break everything 😁. Also o
 
 - [Vite](https://vitejs.dev) - as written on the website "Next Generation Frontend Tooling", in simpler words - bundler, but not quite
 
-- [Popmotion](https://popmotion.io) - used for animations, could use gsap, but i wanted to build the blog simple and small. Bundlephobia says that gsap is 2.6 times larger then popmotion. Animejs was also as option, but last commit was done 2 years ago
+- [Animejs](https://animejs.com) - used for animations, could use gsap, but i wanted to build the blog simple and small. Bundlephobia says that gsap is 3.8 times larger then animejs.
 
 - [OGL](https://github.com/oframe/ogl) - background, smaller that threejs
 
