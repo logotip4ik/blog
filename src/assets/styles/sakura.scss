@@ -75,14 +75,16 @@ h6 {
   font-weight: 600;
   margin-top: 3rem;
   margin-bottom: 1.5rem;
+  opacity: 0.9;
   @include word-wrap;
 }
 
 h1 {
   font-size: 2.75em;
-
+  
   margin-bottom: 4rem;
-
+  
+  opacity: 1;
   mix-blend-mode: luminosity;
 }
 h2 {
