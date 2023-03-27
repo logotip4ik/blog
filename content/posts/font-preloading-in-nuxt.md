@@ -9,15 +9,14 @@ tags:
 
 # Font preloading
 
-To preload font you need a link from which browser will start preloading. Nuxt uses vite under the hood,
-so we can utilize its import prefixes to gather correct import link.
+To preload font you need a link from which browser will start preloading. Nuxt uses vite under the hood, so we can use its import prefixes to gather correct import link.
 
 ```js
 import SomeFont from '~/assets/fonts/some-font.woff2?url';
 ```
 
-At dev environment vite will return something like this: ``/src/assets/fonts/some-font.woff2``, but at build time,
-it will add build hash to filename and put it in assets folder, it will look something like this: ``/_nuxt/some-font.6bde7bbf.woff2``
+At dev environment vite will return something like this: ``/src/assets/fonts/some-font.woff2``.
+But at build time, it will add build hash to filename and put it in assets folder, it will look something like this: ``/_nuxt/some-font.6bde7bbf.woff2``
 
 ## Create correct link tag
 
