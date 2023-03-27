@@ -6,6 +6,8 @@ const posts = computed(() =>
     .filter((page) => page.path.includes('/p'))
     .sort((a, b) => a.createdAt - b.createdAt),
 );
+
+useHead({ title: '' });
 </script>
 
 <template>
