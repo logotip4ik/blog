@@ -44,7 +44,7 @@ useHead({
       type: 'font/woff2',
     }
   ]
-})
+});
 ```
 
 ## Usage ?
@@ -103,7 +103,7 @@ export default defineNuxtConfig({
     '@nuxtjs/fontaine',
     // ... more modules
   ],
-  
+
   // ... even more config
 
   fontMetrics: {
@@ -112,7 +112,7 @@ export default defineNuxtConfig({
       { family: 'Some font', src: '/fonts/some-font.woff2' },
     ],
   },
-})
+});
 ```
 
 Hope it helps 👍    

@@ -1,5 +1,6 @@
-import { readFileSync } from 'fs';
-import { join, parse, resolve } from 'path';
+import process from 'node:process';
+import { readFileSync } from 'node:fs';
+import { join, parse, resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import Vue from '@vitejs/plugin-vue';
 import GLSL from 'vite-plugin-glsl';

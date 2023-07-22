@@ -10,7 +10,7 @@ export function hexToNormalizedRgb(colors) {
 
     const colorParts = value.match(/.{1,2}/g);
 
-    return colorParts.map((part) => parseInt(part, 16) / 255);
+    return colorParts.map((part) => Number.parseInt(part, 16) / 255);
   });
 }
 

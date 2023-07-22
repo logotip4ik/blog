@@ -4,7 +4,7 @@ import pages from '~pages';
 const posts = computed(() =>
   pages
     .filter((page) => page.path.includes('/p'))
-    .sort((a, b) => new Date(b.meta.date) - new Date(a.meta.date))
+    .sort((a, b) => new Date(b.meta.date) - new Date(a.meta.date)),
 );
 
 useHead({ title: '' });
