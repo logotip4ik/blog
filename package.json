@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@8.6.9",
+  "packageManager": "pnpm@8.6.11",
   "author": {
     "name": "Bogdan Kostyuk",
     "email": "contact@bogdankostyuk.xyz",
@@ -19,7 +19,7 @@
   "browserslist": "last 5 versions, not dead, not IE 11",
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.0.5",
-    "@vueuse/core": "^10.2.1",
+    "@vueuse/core": "^10.3.0",
     "@vueuse/head": "^1.1.26",
     "animejs": "^3.2.1",
     "cross-env": "^7.0.3",
@@ -44,9 +44,9 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.39.8",
     "@vitejs/plugin-vue": "^4.2.3",
-    "eslint": "^8.45.0",
+    "eslint": "^8.46.0",
     "gray-matter": "^4.0.3",
     "unplugin-cloudflare-headers": "0.3.3",
-    "vite": "^4.4.6"
+    "vite": "^4.4.7"
   }
 }
