@@ -12,6 +12,7 @@ import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import CloudflareHeaders from 'unplugin-cloudflare-headers/vite';
 
+import browserslistToEsbuild from 'browserslist-to-esbuild';
 import matter from 'gray-matter';
 import generateSitemap from 'vite-ssg-sitemap';
 import MarkdownItAnchor from 'markdown-it-anchor';
@@ -152,6 +153,8 @@ export default defineConfig(async () => {
     build: {
       sourcemap: false,
       assetsDir: '_vite',
+
+      cssTarget: browserslistToEsbuild(),
     },
 
     optimizeDeps: {
