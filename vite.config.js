@@ -1,6 +1,7 @@
 import process from 'node:process';
 import { readFileSync } from 'node:fs';
-import { join, parse, resolve } from 'node:path';
+import { dirname, join, parse, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import Vue from '@vitejs/plugin-vue';
 import GLSL from 'vite-plugin-glsl';
@@ -19,6 +20,8 @@ import { markdownItShikiTwoslashSetup } from 'markdown-it-shiki-twoslash';
 import MarkdownItLazyImages from './markdownit/lazy-images';
 
 import sequoiaMoonlight from './src/assets/themes/sequoia-moonlight.json';
+
+const currentDir = dirname(fileURLToPath(import.meta.url));
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => {
@@ -46,7 +49,7 @@ export default defineConfig(async () => {
 
           for (const route of routes) {
             const normalizedComponentPath = route.component.slice(1);
-            const componentPath = resolve(__dirname, normalizedComponentPath);
+            const componentPath = resolve(currentDir, normalizedComponentPath);
             const postContents = readFileSync(componentPath, {
               encoding: 'utf-8',
             });
@@ -64,7 +67,7 @@ export default defineConfig(async () => {
         extendRoute(route) {
           // removing leading slash
           const normalizedComponentPath = route.component.slice(1);
-          const componentPath = resolve(__dirname, normalizedComponentPath);
+          const componentPath = resolve(currentDir, normalizedComponentPath);
 
           const routeContent = readFileSync(componentPath);
           const { name, ext } = parse(componentPath);
@@ -141,7 +144,9 @@ export default defineConfig(async () => {
     },
 
     resolve: {
-      alias: { '~': join(__dirname, 'src') },
+      alias: {
+        '~': join(currentDir, 'src'),
+      },
     },
 
     build: {
