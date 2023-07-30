@@ -16,7 +16,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
-  "browserslist": "last 5 versions, not dead, not IE 11",
+  "browserslist": "last 3 years and > 0.2%, not dead, not op_mini all",
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.0.5",
     "@vueuse/core": "^10.3.0",
