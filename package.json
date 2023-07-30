@@ -22,6 +22,7 @@
     "@vueuse/core": "^10.3.0",
     "@vueuse/head": "^1.1.26",
     "animejs": "^3.2.1",
+    "browserslist-to-esbuild": "^1.2.0",
     "cross-env": "^7.0.3",
     "image-size": "^1.0.2",
     "markdown-it-anchor": "^8.6.7",
