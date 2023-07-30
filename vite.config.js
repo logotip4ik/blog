@@ -144,7 +144,10 @@ export default defineConfig(async () => {
       alias: { '~': join(__dirname, 'src') },
     },
 
-    build: { sourcemap: false },
+    build: {
+      sourcemap: false,
+      assetsDir: '_vite',
+    },
 
     optimizeDeps: {
       include: ['animejs', '@vueuse/head'],
