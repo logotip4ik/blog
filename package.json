@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@8.6.11",
+  "packageManager": "pnpm@8.10.5",
   "author": {
     "name": "Bogdan Kostyuk",
     "email": "contact@bogdankostyuk.xyz",
@@ -18,9 +18,9 @@
   },
   "browserslist": "last 3 years and > 0.2%, not dead, not op_mini all",
   "dependencies": {
-    "@fontsource/ibm-plex-sans": "^5.0.5",
-    "@vueuse/core": "^10.3.0",
-    "@vueuse/head": "^1.1.26",
+    "@fontsource/ibm-plex-sans": "^5.0.17",
+    "@vueuse/core": "^10.6.1",
+    "@vueuse/head": "^2.0.0",
     "animejs": "^3.2.1",
     "browserslist-to-esbuild": "^1.2.0",
     "cross-env": "^7.0.3",
@@ -28,26 +28,26 @@
     "markdown-it-anchor": "^8.6.7",
     "markdown-it-shiki-twoslash": "^2.1.3",
     "normalize.css": "^8.0.1",
-    "ogl": "^0.0.117",
-    "sass": "^1.64.1",
+    "ogl": "^1.0.3",
+    "sass": "^1.69.5",
     "sync-fetch": "^0.5.2",
-    "unplugin-auto-import": "^0.16.6",
-    "unplugin-vue-components": "^0.25.1",
+    "unplugin-auto-import": "^0.16.7",
+    "unplugin-vue-components": "^0.25.2",
     "vite-plugin-glsl": "^1.1.2",
     "vite-plugin-pages": "^0.31.0",
-    "vite-plugin-vue-markdown": "^0.23.7",
-    "vite-ssg": "^0.23.1",
-    "vite-ssg-sitemap": "^0.5.1",
-    "vite-svg-loader": "^4.0.0",
-    "vue": "^3.3.4",
-    "vue-router": "^4.2.4"
+    "vite-plugin-vue-markdown": "^0.23.8",
+    "vite-ssg": "^0.23.5",
+    "vite-ssg-sitemap": "^0.6.1",
+    "vite-svg-loader": "^5.0.1",
+    "vue": "^3.3.8",
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.39.8",
-    "@vitejs/plugin-vue": "^4.2.3",
-    "eslint": "^8.46.0",
+    "@antfu/eslint-config": "^2.0.0",
+    "@vitejs/plugin-vue": "^4.5.0",
+    "eslint": "^8.54.0",
     "gray-matter": "^4.0.3",
     "unplugin-cloudflare-headers": "0.3.3",
-    "vite": "^4.4.7"
+    "vite": "^5.0.0"
   }
 }
