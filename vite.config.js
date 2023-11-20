@@ -155,6 +155,14 @@ export default defineConfig(async () => {
       assetsDir: '_vite',
 
       cssTarget: browserslistToEsbuild(),
+      minify: 'terser',
+
+      terserOptions: {
+        compress: true,
+        mangle: true,
+        safari10: false,
+        ecma: 2020,
+      },
     },
 
     optimizeDeps: {
