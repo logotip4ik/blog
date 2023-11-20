@@ -31,6 +31,7 @@
     "ogl": "^1.0.3",
     "sass": "^1.69.5",
     "sync-fetch": "^0.5.2",
+    "terser": "^5.24.0",
     "unplugin-auto-import": "^0.16.7",
     "unplugin-vue-components": "^0.25.2",
     "vite-plugin-glsl": "^1.1.2",
