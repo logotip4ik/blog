@@ -34,8 +34,8 @@ export default function MarkdownItLazyImages(md) {
  * @param {import('markdown-it')} md
  * @param {import('markdown-it/lib/token')} token
  *
- * @returns {string}
- * */
+ * @returns {string} stringified attributes
+ */
 function preserveAttributes(md, token) {
   const ignore = ['alt'];
   const escape = ['title'];
@@ -56,8 +56,8 @@ function preserveAttributes(md, token) {
 /**
  * @param {string} imageUrl
  *
- * @returns {Buffer}
- * */
+ * @returns {Buffer} image as buffer of bytes
+ */
 function getImage(imageUrl) {
   if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
     return fetch(imageUrl).buffer();

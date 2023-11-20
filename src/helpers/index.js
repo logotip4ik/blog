@@ -1,5 +1,5 @@
 /**
- * @returns {number}
+ * @returns {number} scroll bar width in pixels
  */
 export function getScrollbarWidth() {
   // Creating invisible container

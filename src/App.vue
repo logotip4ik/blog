@@ -12,7 +12,7 @@ const footer = ref(null);
 
 /**
  * @param {HTMLElement} pageEl
- * @param {function} done
+ * @param {Function} done
  */
 function enterPageAnim(pageEl, done) {
   anime({
@@ -26,7 +26,7 @@ function enterPageAnim(pageEl, done) {
 
 /**
  * @param {HTMLElement} pageEl
- * @param {function} done
+ * @param {Function} done
  */
 function leavePageAnim(pageEl, done) {
   // NOTE: chrome do not allow to mess around with scroll
