@@ -155,6 +155,7 @@ export default defineConfig(async () => {
       assetsDir: '_vite',
 
       cssTarget: browserslistToEsbuild(),
+      target: browserslistToEsbuild(),
       minify: 'terser',
 
       terserOptions: {
