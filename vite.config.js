@@ -161,8 +161,22 @@ export default defineConfig(async () => {
       minify: 'terser',
 
       terserOptions: {
-        compress: true,
-        mangle: true,
+        compress: {
+          defaults: true,
+          keep_fargs: false,
+          module: true,
+          toplevel: true,
+          unsafe_math: true,
+          unsafe_symbols: true,
+          unsafe_methods: true,
+          unsafe_proto: true,
+          unsafe_regexp: true,
+          unsafe_undefined: true,
+        },
+        mangle: {
+          toplevel: true,
+        },
+        toplevel: true,
         safari10: false,
         ecma: 2020,
       },
