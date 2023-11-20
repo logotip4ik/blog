@@ -135,6 +135,8 @@ export default defineConfig(async () => {
     ssgOptions: {
       dirStyle: 'nested',
       formatting: 'minify',
+      format: 'esm',
+      script: 'defer',
 
       onFinished() {
         generateSitemap({
