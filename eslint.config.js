@@ -7,7 +7,7 @@ export default antfu({
   },
 
   rules: {
-    'arrow-parens': ['error', 'always'],
+    'style/arrow-parens': ['error', 'always'],
     'curly': ['error', 'multi-or-nest', 'consistent'],
     'antfu/if-newline': 'off',
   },
