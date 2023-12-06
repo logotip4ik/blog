@@ -183,7 +183,7 @@ export default defineConfig(async () => {
     },
 
     optimizeDeps: {
-      include: ['animejs', '@vueuse/head'],
+      include: ['animejs', '@unhead/vue'],
     },
   };
 });
