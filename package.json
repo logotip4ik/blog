@@ -48,6 +48,6 @@
     "eslint": "^8.46.0",
     "gray-matter": "^4.0.3",
     "unplugin-cloudflare-headers": "0.3.3",
-    "vite": "^4.4.7"
+    "vite": "^4.4.12"
   }
 }
