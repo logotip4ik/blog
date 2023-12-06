@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@8.11.0",
+  "packageManager": "yarn@4.0.2",
   "author": {
     "name": "Bogdan Kostyuk",
     "email": "contact@bogdankostyuk.xyz",
