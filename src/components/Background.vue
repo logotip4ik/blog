@@ -19,7 +19,7 @@ const lightColors = hexToNormalizedRgb(['#fff9ca', '#ffdeb4', '#ffb4b4', '#b2a4f
 let colors = lightColors;
 
 const options = {
-  speedMultiplier: 1,
+  speedMultiplier: 0,
   colorFreqX: 1.4,
   colorFreqY: 1.3,
   colorStrength: 0,
@@ -104,7 +104,7 @@ onMounted(() => {
     objectSize.height *= window.innerHeight / window.innerWidth;
 
     const temp = options.colorFreqX;
-    options.colorFreqX = options.colorFreqY * 1;
+    options.colorFreqX = options.colorFreqY;
     options.colorFreqY = temp * 2.25;
 
     options.noiseStrength *= 1.5;
@@ -122,7 +122,7 @@ onMounted(() => {
     cullFace: false,
     uniforms: {
       time: { value: 0.0 },
-      randomSeed: { value: Math.random() * 1000 },
+      randomSeed: { value: Math.random() % 100000 },
       uColor: { value: colors.map((color) => new Color(color)) },
       uClearColor: { value: options.clearColor },
       uColorStrength: { value: options.colorStrength },

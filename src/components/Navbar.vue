@@ -1,37 +1,39 @@
 <script setup>
+const props = defineProps({
+  markdownRoutes: {
+    /** @type {import('vue').PropType<string[]>} */
+    type: Array,
+    required: true,
+  },
+})
 const backButton = ref(null);
 const route = useRoute();
 
-const showBackArrow = computed(() => {
-  const allowedPrefix = ['p/'];
+const showBackArrow = computed(() =>
+  props.markdownRoutes.some((prefix) => route.fullPath.includes(prefix))
+);
 
-  return allowedPrefix.some((prefix) => route.fullPath.includes(prefix));
-});
-
+let prevScroll = 0;
 function backButtonScrollAnimation() {
-  let prevScroll = 0;
+  let direction = 1;
 
-  return () => {
-    let direction = 1;
+  if (window.scrollY < prevScroll) direction = -1;
 
-    if (window.scrollY < prevScroll) direction = -1;
+  prevScroll = window.scrollY;
 
-    prevScroll = window.scrollY;
+  if (!backButton.value) return;
 
-    if (!backButton.value) return;
-
-    if (direction > 0) backButton.value.setAttribute('data-hidden', true);
-    if (direction < 0) backButton.value.removeAttribute('data-hidden');
-  };
+  if (direction > 0) backButton.value.setAttribute('data-hidden', true);
+  if (direction < 0) backButton.value.removeAttribute('data-hidden');
 }
 
 onMounted(() => {
-  const scrollListener = backButtonScrollAnimation();
+  const scrollHandlerOptions = { passive: true };
 
-  window.addEventListener('scroll', scrollListener, { passive: true });
+  window.addEventListener('scroll', backButtonScrollAnimation, scrollHandlerOptions);
 
   onBeforeUnmount(() => {
-    window.removeEventListener('scroll', scrollListener);
+    window.removeEventListener('scroll', backButtonScrollAnimation, scrollHandlerOptions);
   });
 });
 </script>
@@ -105,7 +107,7 @@ nav {
       transition-duration: 0.1s;
 
       // even if button is hidden from eyes, still show on tabbing through the page
-      &:focus-visible {
+      &:is(:focus-visible, :hover) {
         opacity: 1;
       }
     }

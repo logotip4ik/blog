@@ -3,12 +3,12 @@ import anime from 'animejs';
 
 const route = useRoute();
 
-const isDark = useDark({ valueDark: '' });
-
 /** @type {import('vue').Ref<HTMLElement | null>} */
 const pageContent = ref(null);
 const background = ref(null);
 const footer = ref(null);
+
+const markdownRoutes = ['/p'];
 
 /**
  * @param {HTMLElement} pageEl
@@ -17,7 +17,7 @@ const footer = ref(null);
 function enterPageAnim(pageEl, done) {
   anime({
     targets: [pageEl.style, footer.value.$el.style],
-    duration: 400,
+    duration: 1100,
     opacity: [0, 1],
     easing: 'easeOutQuad',
     complete: done,
@@ -32,7 +32,7 @@ function leavePageAnim(pageEl, done) {
   // NOTE: chrome do not allow to mess around with scroll
   anime({
     targets: [pageEl.style, footer.value.$el.style],
-    duration: 400,
+    duration: 200,
     opacity: [1, 0],
     easing: 'easeOutExpo',
     complete: done,
@@ -44,44 +44,37 @@ function leavePageAnim(pageEl, done) {
 /**
  * @param {string} route use route.fullPath
  */
-function animateBackgroundWithRoute(route) {
-  const prefixes = ['/p'];
-
-  const dimmed = isDark.value ? 0.45 : 0.45;
-  const markdownPage = prefixes.some((prefix) => route.includes(prefix));
+function animateBackgroundWithRoute(route, initial = false) {
+  const markdownPage = markdownRoutes.some((prefix) => route.includes(prefix));
 
   anime({
     targets: background.value.options,
-    duration: 500,
-    colorStrength: [background.value.options.colorStrength || 0, markdownPage ? dimmed : 1],
-    easing: 'easeOutQuad',
-  });
-
-  anime({
-    targets: background.value.options,
-    duration: 500,
-    speedMultiplier: [background.value.options.speedMultiplier || 1, markdownPage ? 0.35 : 1],
-    easing: 'easeOutQuad',
+    duration: initial ? 1500 : 800,
+    colorStrength: [background.value.options.colorStrength, markdownPage ? 0.45 : 1],
+    speedMultiplier: [background.value.options.speedMultiplier, markdownPage ? 0.35 : 1],
+    easing: 'easeOutExpo',
   });
 }
-
-useHead({ titleTemplate: (title) => !title ? 'Blog' : `${title} | Blog` });
 
 // TODO: scroll back to user's previous position
 
 onMounted(() => {
-  animateBackgroundWithRoute(route.fullPath);
+  animateBackgroundWithRoute(route.fullPath, true);
 
-  setTimeout(() => enterPageAnim(pageContent.value, () => null), 300);
+  setTimeout(() => {
+    enterPageAnim(pageContent.value, () => null);
+  }, 300);
+});
 
-  window.$anime = anime;
+useHead({
+  titleTemplate: (title) => !title ? 'Blog' : `${title} | Blog`
 });
 </script>
 
 <template>
   <Background ref="background" />
 
-  <Navbar />
+  <Navbar :markdownRoutes />
 
   <div ref="pageContent" content>
     <RouterView v-slot="{ Component }">
