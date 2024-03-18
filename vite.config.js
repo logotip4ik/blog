@@ -57,9 +57,9 @@ export default defineConfig(async () => {
 
             const { data, isEmpty } = matter(postContents);
 
-            if (isEmpty) continue;
-
-            if (!data.draft) newRoutes.push(route);
+            if (isEmpty && !data.draft) {
+              newRoutes.push(route);
+            }
           }
 
           return newRoutes;
@@ -161,23 +161,11 @@ export default defineConfig(async () => {
       minify: 'terser',
 
       terserOptions: {
-        compress: {
-          defaults: true,
-          keep_fargs: false,
-          module: true,
-          toplevel: true,
-          unsafe_math: true,
-          unsafe_symbols: true,
-          unsafe_methods: true,
-          unsafe_proto: true,
-          unsafe_regexp: true,
-          unsafe_undefined: true,
-        },
-        mangle: {
-          toplevel: true,
-        },
+        compress: true,
+        mangle: true,
         toplevel: true,
         safari10: false,
+        ie8: false,
         ecma: 2020,
       },
     },
