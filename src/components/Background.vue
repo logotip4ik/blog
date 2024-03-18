@@ -66,24 +66,18 @@ function resize({ renderer, camera, object }) {
 
 defineExpose({ canvas, overlay, options });
 
-// TODO: animate transition of color scheme
 watch(isDark, (isDark) => {
-  // color scheme
-  let to = isDark ? darkColors : lightColors;
-
-  for (let i = 0; i < to.length; i += 1)
-    colors[i] = to[i];
+  // TODO: animate transition of color scheme
+  colors = isDark ? darkColors : lightColors;
 
   // clear color
-  to = normalizeRgb(isDark ? [34, 34, 34] : [255, 255, 255]);
-
-  options.clearColor = to;
+  options.clearColor = normalizeRgb(isDark ? [34, 34, 34] : [255, 255, 255]);
 });
 
 onMounted(() => {
   const aspect = window.innerWidth / window.innerHeight;
 
-  colors = JSON.parse(JSON.stringify(isDark.value ? darkColors : lightColors));
+  colors = isDark.value ? darkColors : lightColors;
   options.clearColor = normalizeRgb(isDark.value ? [34, 34, 34] : [255, 255, 255]);
 
   const renderer = new Renderer({
