@@ -67,7 +67,7 @@ onMounted(() => {
 });
 
 useHead({
-  titleTemplate: (title) => !title ? 'Blog' : `${title} | Blog`
+  titleTemplate: (title) => title ? title : 'Bogdan Kostyuk',
 });
 </script>
 
