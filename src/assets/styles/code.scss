@@ -126,8 +126,8 @@ pre .code-title {
   right: 0;
   z-index: 1;
   isolation: isolate;
-  
-  font-size: 16px;
+
+  font-size: 1rem;
   text-align: right;
 
   padding: 4px 9px;
@@ -137,7 +137,7 @@ pre .code-title {
   border-top-right-radius: inherit;
 
   background-color: rgb(39, 39, 39);
-  
+
   @supports (backdrop-filter: blur(1px)) {
     background-color: rgba(152, 152, 166, 0.125);
     backdrop-filter: blur(2px);

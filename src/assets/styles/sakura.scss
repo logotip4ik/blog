@@ -24,6 +24,8 @@
     --color-bg-alt: #4a4a4a;
     --color-text: #ececec;
   }
+
+  color-scheme: light dark;
 }
 
 @mixin word-wrap() {
@@ -53,7 +55,7 @@ body {
   padding-top: 35vh;
 
   overflow-y: scroll;
-  
+
   transition: color var(--default-ease-with-timings);
 
   @media (max-width: 760px) {
