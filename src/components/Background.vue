@@ -35,11 +35,6 @@ function render({ renderer, scene, camera, object }) {
   object.program.uniforms.time.value += 0.0035 * options.speedMultiplier;
 
   for (let i = 0; i < object.program.uniforms.uColor.value.length; i += 1) {
-    const normalizedColorArray = object.program.uniforms.uColor.value[i];
-
-    // if colors is the same do nothing
-    if (normalizedColorArray.every((color, colorIdx) => colors[i][colorIdx] === color)) continue;
-
     object.program.uniforms.uColor.value[i] = colors[i];
   }
 
@@ -66,7 +61,7 @@ function resize({ renderer, camera, object }) {
   object.updateMatrix();
   camera.updateMatrix();
 
-  Object.assign(document.documentElement.style, { '--vh': window.innerHeight / 100 });
+  document.documentElement.style.setProperty('--vh', window.innerHeight / 100);
 }
 
 defineExpose({ canvas, overlay, options });
@@ -166,7 +161,7 @@ onMounted(() => {
   onBeforeUnmount(() => {
     pause();
 
-    window.removeEventListener('resize', resizer);
+    window.removeEventListener('resize', resizer, false);
   });
 });
 </script>
