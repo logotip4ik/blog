@@ -1,15 +1,21 @@
-/* Sakura.css v1.4.1
- * ================
- * Minimal css theme.
- * Project: https://github.com/oxalorg/sakura/
+/* Based on:
+ *   Sakura.css v1.4.1
+ *   ================
+ *   Minimal css theme.
+ *   Project: https://github.com/oxalorg/sakura/
  */
 
+@use 'sass:color';
+
 :root {
+  $color-headings: #121212;
+
   --color-blossom: #140b43;
   --color-fade: #423394;
   --color-bg: #ffffff;
   --color-bg-alt: #f7f7f7;
-  --color-text: #121212;
+  --color-headings: #{$color-headings};
+  --color-text: #{color.adjust($color-headings, $lightness: +15%)};
   --font-size-base: 1.8rem;
   --font-family-base: 'Vercetti', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
   --font-family-heading: 'IBM Plex Sans', var(--font-family-base);
@@ -18,11 +24,14 @@
   --default-ease-with-timings: 0.3s var(--ease-out-cubic);
 
   @media (prefers-color-scheme: dark) {
+    $color-headings: #ececec;
+
     --color-blossom: #ffffff;
     --color-fade: #c9c9c9;
     --color-bg: #121212;
     --color-bg-alt: #4a4a4a;
-    --color-text: #ececec;
+    --color-headings: #{$color-headings};
+    --color-text: #{color.adjust($color-headings, $lightness: -15%)};
   }
 
   color-scheme: light dark;
@@ -75,14 +84,15 @@ h3 {
   margin-top: 3rem;
   margin-bottom: 1.5rem;
   opacity: 0.9;
+  color: var(--color-headings);
   @include word-wrap;
 }
 
 h1 {
   font-size: 2.75em;
-  
+
   margin-bottom: 4rem;
-  
+
   opacity: 1;
   mix-blend-mode: luminosity;
 }
@@ -91,15 +101,6 @@ h2 {
 }
 h3 {
   font-size: 1.75em;
-}
-h4 {
-  font-size: 1.5em;
-}
-h5 {
-  font-size: 1.25em;
-}
-h6 {
-  font-size: 1em;
 }
 
 p {
@@ -117,6 +118,10 @@ hr {
   border-color: var(--color-blossom);
 
   transition: border-color var(--default-ease-with-timings);
+}
+
+strong,em, {
+  color: var(--color-blossom);
 }
 
 a {
