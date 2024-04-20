@@ -34,3 +34,5 @@ components.d.ts
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+typed-router.d.ts
