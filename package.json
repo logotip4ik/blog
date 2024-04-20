@@ -33,6 +33,7 @@
     "sass": "^1.75.0",
     "sync-fetch": "^0.5.2",
     "terser": "^5.30.3",
+    "typescript": "^5.4.5",
     "unplugin-auto-import": "^0.17.5",
     "unplugin-vue-components": "^0.26.0",
     "unplugin-vue-router": "^0.8.6",

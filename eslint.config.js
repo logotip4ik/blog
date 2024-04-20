@@ -11,4 +11,12 @@ export default antfu({
     'curly': ['error', 'multi-or-nest', 'consistent'],
     'antfu/if-newline': 'off',
   },
+
+  jsonc: false,
+  yaml: false,
+  toml: false,
+  vue: true,
+  typescript: true,
+
+  ignores: ['**/*.md'],
 });
