@@ -11,7 +11,7 @@
   },
   "scripts": {
     "dev": "vite --port 3000",
-    "build": "cross-env NODE_ENV=production vite-ssg build",
+    "build": "NODE_ENV=production vite-ssg build",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
@@ -23,7 +23,6 @@
     "@vueuse/head": "^2.0.0",
     "animejs": "^3.2.2",
     "browserslist-to-esbuild": "^2.1.1",
-    "cross-env": "^7.0.3",
     "image-size": "^1.1.1",
     "markdown-it-anchor": "^8.6.7",
     "markdown-it-shiki-twoslash": "^2.1.3",
