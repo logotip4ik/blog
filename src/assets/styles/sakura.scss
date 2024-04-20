@@ -67,10 +67,7 @@ body {
 
 h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
+h3 {
   position: relative;
   line-height: 1.1;
   font-family: var(--font-family-heading);
@@ -143,38 +140,36 @@ a {
   }
 }
 
-@for $i from 1 to 7 {
-  h#{$i}:is(:hover, :focus-visible) > a[aria-hidden='true'] {
-    opacity: 0.5;
-  }
+:is(h1, h2, h3):is(:hover, :focus-visible) > a[aria-hidden='true'] {
+  opacity: 0.5;
+}
 
-  h#{$i} a[aria-hidden='true'] {
-    --offset-from-text: 0.25rem;
+:is(h1, h2, h3) a[aria-hidden='true'] {
+  --offset-from-text: 0.25rem;
 
-    position: absolute;
-    right: calc(100% + var(--offset-from-text));
-    top: 0;
+  position: absolute;
+  right: calc(100% + var(--offset-from-text));
+  top: 0;
 
+  color: var(--color-text);
+
+  opacity: 0;
+  background-image: none;
+
+  transition: opacity var(--default-ease-with-timings);
+
+  &:is(:hover, :focus-visible) {
     color: var(--color-text);
 
-    opacity: 0;
-    background-image: none;
+    opacity: 1;
+  }
 
-    transition: opacity var(--default-ease-with-timings);
+  @media (max-width: 760px) {
+    --offset-from-text: 0.1rem;
 
-    &:is(:hover, :focus-visible) {
-      color: var(--color-text);
+    font-size: 0.7em;
 
-      opacity: 1;
-    }
-
-    @media (max-width: 760px) {
-      --offset-from-text: 0.1rem;
-
-      font-size: 0.7em;
-
-      padding-top: 0.55rem;
-    }
+    padding-top: 0.55rem;
   }
 }
 
