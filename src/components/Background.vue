@@ -175,5 +175,10 @@ canvas {
   height: 100vh;
 
   box-sizing: border-box;
+  background-color: white;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: black;
+  }
 }
 </style>
