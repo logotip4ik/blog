@@ -5,12 +5,12 @@ import '~/assets/styles/sakura.scss';
 import '~/assets/styles/code.scss';
 
 import { ViteSSG } from 'vite-ssg';
+import { routes } from 'vue-router/auto-routes';
 import App from './App.vue';
-import routes from '~pages';
 
 export const createApp = ViteSSG(App, {
   routes,
-  scrollBehavior: (to, from, savedPosition) => {
+  scrollBehavior: (to, _from, savedPosition) => {
     if (savedPosition && !to.hash) return savedPosition;
 
     if (to.hash) return { el: to.hash, top: 75, behavior: 'smooth' };

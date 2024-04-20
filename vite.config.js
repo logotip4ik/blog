@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import Vue from '@vitejs/plugin-vue';
 import GLSL from 'vite-plugin-glsl';
-import Pages from 'vite-plugin-pages';
+import VueRouter from 'unplugin-vue-router/vite';
 import SvgLoader from 'vite-svg-loader';
 import Markdown from 'vite-plugin-vue-markdown';
 import AutoImport from 'unplugin-auto-import/vite';
@@ -35,58 +35,50 @@ export default defineConfig(async () => {
 
   return {
     plugins: [
-      Vue({ include: [/\.vue$/, /\.md$/] }),
-
-      Pages({
-        extensions: ['vue', 'md'],
-        dirs: [
-          { dir: 'src/pages', baseRoute: '' },
-          { dir: 'content/posts', baseRoute: 'p' },
+      VueRouter({
+        extensions: ['.vue', '.md'],
+        routesFolder: [
+          {
+            src: 'src/pages',
+            path: '',
+            extensions: ['.vue'],
+          },
+          {
+            src: 'content/posts',
+            path: 'p/',
+            extensions: ['.md'],
+          },
         ],
-        onRoutesGenerated(routes) {
-          if (isDev) return routes;
+        extendRoute(node) {
+          if (!node.fullPath.startsWith('/p/'))
+            return;
 
-          const newRoutes = [];
-
-          for (const route of routes) {
-            const normalizedComponentPath = route.component.slice(1);
-            const componentPath = resolve(currentDir, normalizedComponentPath);
-            const postContents = readFileSync(componentPath, {
-              encoding: 'utf-8',
-            });
-
-            const { data, isEmpty } = matter(postContents);
-
-            if (isEmpty && !data.draft) {
-              newRoutes.push(route);
-            }
-          }
-
-          return newRoutes;
-        },
-        /** @param {{ name: string, path: string, component: string, props: boolean }} route */
-        extendRoute(route) {
-          // removing leading slash
-          const normalizedComponentPath = route.component.slice(1);
-          const componentPath = resolve(currentDir, normalizedComponentPath);
-
+          const componentPath = resolve(currentDir, `content/posts/${node.path}.md`);
           const routeContent = readFileSync(componentPath);
           const { name, ext } = parse(componentPath);
-          const { data: meta } = matter(routeContent);
+          const { data } = matter(routeContent);
 
-          const info = {
-            meta,
+          node.addToMeta({
+            ...data,
             ext,
             filename: name,
-          };
+          });
+        },
 
-          const prefixTypeMapper = { '/p': 'post' };
-          for (const [prefix, type] in Object.entries(prefixTypeMapper))
-            if (route.path.includes(prefix)) info.type = type;
+        beforeWriteFiles(rootRoute) {
+          const postsRoot = rootRoute.children.find((route) => route.path === '/p');
 
-          return { ...route, ...info };
+          if (!postsRoot)
+            return;
+
+          for (const node of postsRoot.children) {
+            if (node.meta.draft === true)
+              node.delete();
+          }
         },
       }),
+
+      Vue({ include: [/\.vue$/, /\.md$/] }),
 
       SvgLoader({ svgo: false }),
 

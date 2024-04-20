@@ -115,5 +115,5 @@ export default defineNuxtConfig({
 });
 ```
 
-Hope it helps 👍    
+Hope it helps 👍
 see you soon, i guess...

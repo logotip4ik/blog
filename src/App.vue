@@ -67,14 +67,14 @@ onMounted(() => {
 });
 
 useHead({
-  titleTemplate: (title) => title ? title : 'Bogdan Kostyuk',
+  titleTemplate: (title) => title || 'Bogdan Kostyuk',
 });
 </script>
 
 <template>
   <Background ref="background" />
 
-  <Navbar :markdownRoutes />
+  <Navbar :markdown-routes />
 
   <div ref="pageContent" content>
     <RouterView v-slot="{ Component }">

@@ -5,12 +5,12 @@ const props = defineProps({
     type: Array,
     required: true,
   },
-})
+});
 const backButton = ref(null);
 const route = useRoute();
 
 const showBackArrow = computed(() =>
-  props.markdownRoutes.some((prefix) => route.fullPath.includes(prefix))
+  props.markdownRoutes.some((prefix) => route.fullPath.includes(prefix)),
 );
 
 let prevScroll = 0;

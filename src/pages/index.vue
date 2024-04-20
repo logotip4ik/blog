@@ -1,13 +1,12 @@
 <script setup>
-import pages from '~pages';
+import { routes } from 'vue-router/auto-routes';
 
 const posts = computed(() =>
-  pages
-    .filter((page) => page.path.includes('/p'))
-    .sort((a, b) => new Date(b.meta.date) - new Date(a.meta.date)),
+  routes
+    .find((route) => route.path === '/p')
+    .children
+    .sort((a, b) => b.meta.date.localeCompare(a.meta.date)),
 );
-
-useHead({ title: '' });
 </script>
 
 <template>
@@ -31,7 +30,7 @@ useHead({ title: '' });
 
     <ul>
       <li v-for="page in posts" :key="page.path">
-        <RouterLink :to="page.path">
+        <RouterLink :to="page.name">
           {{ page.meta.title }}
         </RouterLink>
 

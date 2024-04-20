@@ -34,9 +34,8 @@ const options = {
 function render({ renderer, scene, camera, object }) {
   object.program.uniforms.time.value += 0.0035 * options.speedMultiplier;
 
-  for (let i = 0; i < object.program.uniforms.uColor.value.length; i += 1) {
+  for (let i = 0; i < object.program.uniforms.uColor.value.length; i += 1)
     object.program.uniforms.uColor.value[i] = colors[i];
-  }
 
   object.program.uniforms.uClearColor.value = options.clearColor;
   object.program.uniforms.uColorStrength.value = options.colorStrength;
