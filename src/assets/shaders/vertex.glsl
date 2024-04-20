@@ -29,14 +29,14 @@ varying float vColorStrength;
 #include utils/noise;
 
 void main() {
-  vec2 noiseCoords = uv * vec2(4., 2.5);
+  vec2 noiseCoords = uv * vec2(4.0, 2.5);
 
   // float tilt = 0.8 * -uv.y;
   float tilt = tilting * -uv.y;
 
   // float incline = 0.25 * uv.x;
   float incline = inclining * uv.x;
-  
+
   float noise = snoise(vec3(noiseCoords.x + time * movementX, noiseCoords.y + time * movementY, time * 0.1 + randomSeed));
 
   noise = max(-0.1, noise);

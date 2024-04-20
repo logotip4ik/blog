@@ -10,6 +10,6 @@ varying float vColorStrength;
 
 void main() {
   vec3 resultingColor = mix(vClearColor, vColor, vColorStrength);
-  
+
   gl_FragColor = vec4(resultingColor, 1.0);
 }
