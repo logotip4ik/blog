@@ -6,10 +6,8 @@ import vertexShader from '~/assets/shaders/vertex.glsl';
 
 const isDark = useDark();
 
-/** @type {import('vue').Ref<HTMLElement | null>} */
-const canvas = ref(null);
-/** @type {import('vue').Ref<HTMLElement | null>} */
-const overlay = ref(null);
+/** @type {import('vue').ShallowRef<HTMLElement | null>} */
+const canvas = shallowRef(null);
 
 const MAX_DPR = 2.15;
 
@@ -20,8 +18,7 @@ let colors = lightColors;
 
 const options = {
   speedMultiplier: 0,
-  colorFreqX: 1.4,
-  colorFreqY: 1.3,
+  colorFreq: new Vec2(1.4, 1.3),
   colorStrength: 0,
   clearColor: [34, 34, 34],
   tilting: 1.5,
@@ -39,8 +36,7 @@ function render({ renderer, scene, camera, object }) {
 
   object.program.uniforms.uClearColor.value = options.clearColor;
   object.program.uniforms.uColorStrength.value = options.colorStrength;
-  object.program.uniforms.uColorFreq.value[0] = options.colorFreqX;
-  object.program.uniforms.uColorFreq.value[1] = options.colorFreqY;
+  object.program.uniforms.uColorFreq.value.set(options.colorFreq);
   object.program.uniforms.tilting.value = options.tilting;
   object.program.uniforms.inclining.value = options.inclining;
   object.program.uniforms.movementX.value = options.movementX;
@@ -63,7 +59,7 @@ function resize({ renderer, camera, object }) {
   document.documentElement.style.setProperty('--vh', window.innerHeight / 100);
 }
 
-defineExpose({ canvas, overlay, options });
+defineExpose({ canvas, options });
 
 watch(isDark, (isDark) => {
   // TODO: animate transition of color scheme
@@ -95,25 +91,27 @@ onMounted(() => {
 
   const scene = new Transform();
 
-  const objectSize = { width: 1.5, height: 1.5 };
+  const objectSize = {
+    width: 1.5,
+    height: 1.5,
+    widthSegments: 300,
+    heightSegments: 300,
+  };
 
   if (window.innerHeight < window.innerWidth)
     objectSize.width *= aspect;
+
   if (window.innerWidth < window.innerHeight) {
     objectSize.height *= window.innerHeight / window.innerWidth;
 
-    const temp = options.colorFreqX;
-    options.colorFreqX = options.colorFreqY;
-    options.colorFreqY = temp * 2.25;
+    const temp = options.colorFreq.x;
+    options.colorFreq.x = options.colorFreq.y;
+    options.colorFreq.y = temp * 2.25;
 
     options.noiseStrength *= 1.5;
   }
 
-  const objectGeometry = new Plane(gl, {
-    ...objectSize,
-    widthSegments: 300,
-    heightSegments: 300,
-  });
+  const objectGeometry = new Plane(gl, objectSize);
   const objectMaterial = new Program(gl, {
     vertex: vertexShader,
     fragment: fragmentShader,
@@ -125,7 +123,7 @@ onMounted(() => {
       uColor: { value: colors.map((color) => new Color(color)) },
       uClearColor: { value: options.clearColor },
       uColorStrength: { value: options.colorStrength },
-      uColorFreq: { value: new Vec2(options.colorFreqX, options.colorFreqY) },
+      uColorFreq: { value: options.colorFreq },
       tilting: { value: options.tilting },
       inclining: { value: options.inclining },
       movementX: { value: options.movementX },

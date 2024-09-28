@@ -3,10 +3,10 @@ import anime from 'animejs';
 
 const route = useRoute();
 
-/** @type {import('vue').Ref<HTMLElement | null>} */
-const pageContent = ref(null);
+/** @type {import('vue').ShallowRef<HTMLElement | null>} */
+const pageContent = shallowRef(null);
+const footer = shallowRef(null);
 const background = ref(null);
-const footer = ref(null);
 
 const markdownRoutes = ['/p'];
 

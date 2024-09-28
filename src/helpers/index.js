@@ -22,7 +22,9 @@ export function getScrollbarWidth() {
   return scrollbarWidth;
 }
 
+const dateFormatter = Intl.DateTimeFormat(undefined, { day: '2-digit', month: 'short', year: 'numeric' });
+
 /** @param {Date} date */
 export function formatDate(date) {
-  return Intl.DateTimeFormat(undefined, { day: '2-digit', month: 'short', year: 'numeric' }).format(date || new Date());
+  return dateFormatter.format(date || new Date());
 }
