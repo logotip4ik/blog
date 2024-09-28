@@ -17,6 +17,10 @@ export default antfu({
   toml: false,
   vue: true,
   typescript: true,
-
-  ignores: ['**/*.md'],
+}, {
+  ignores: [
+    '**/*.md',
+    'dist/**/*.*',
+    '.yarn/**/*.*',
+  ],
 });

@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
-import fetch from 'sync-fetch';
 import determineImageSize from 'image-size';
+import fetch from 'sync-fetch';
 
 /** @param {import('markdown-it')} md */
 export default function MarkdownItLazyImages(md) {

@@ -1,12 +1,12 @@
-import 'normalize.css/normalize.css';
-import '@fontsource/ibm-plex-sans/latin.css';
-import '~/assets/fonts/styles.css';
-import '~/assets/styles/sakura.scss';
-import '~/assets/styles/code.scss';
-
 import { ViteSSG } from 'vite-ssg';
 import { routes } from 'vue-router/auto-routes';
 import App from './App.vue';
+import 'normalize.css/normalize.css';
+import '@fontsource/ibm-plex-sans/latin.css';
+
+import '~/assets/fonts/styles.css';
+import '~/assets/styles/sakura.scss';
+import '~/assets/styles/code.scss';
 
 export const createApp = ViteSSG(App, {
   routes,

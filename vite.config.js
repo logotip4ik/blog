@@ -1,22 +1,22 @@
-import process from 'node:process';
 import { readFileSync } from 'node:fs';
 import { dirname, join, parse, resolve } from 'node:path';
+import process from 'node:process';
 import { fileURLToPath } from 'node:url';
-import { defineConfig } from 'vite';
 import Vue from '@vitejs/plugin-vue';
-import GLSL from 'vite-plugin-glsl';
-import VueRouter from 'unplugin-vue-router/vite';
-import SvgLoader from 'vite-svg-loader';
-import Markdown from 'vite-plugin-vue-markdown';
-import AutoImport from 'unplugin-auto-import/vite';
-import Components from 'unplugin-vue-components/vite';
-import CloudflareHeaders from 'unplugin-cloudflare-headers/vite';
-
 import browserslistToEsbuild from 'browserslist-to-esbuild';
 import matter from 'gray-matter';
-import generateSitemap from 'vite-ssg-sitemap';
 import MarkdownItAnchor from 'markdown-it-anchor';
 import { markdownItShikiTwoslashSetup } from 'markdown-it-shiki-twoslash';
+import AutoImport from 'unplugin-auto-import/vite';
+import CloudflareHeaders from 'unplugin-cloudflare-headers/vite';
+import Components from 'unplugin-vue-components/vite';
+import VueRouter from 'unplugin-vue-router/vite';
+
+import { defineConfig } from 'vite';
+import GLSL from 'vite-plugin-glsl';
+import Markdown from 'vite-plugin-vue-markdown';
+import generateSitemap from 'vite-ssg-sitemap';
+import SvgLoader from 'vite-svg-loader';
 
 import MarkdownItLazyImages from './markdownit/lazy-images';
 
