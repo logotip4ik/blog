@@ -138,12 +138,12 @@ pre .code-title {
 
   background-color: rgb(39, 39, 39);
 
+  transition: opacity 0.3s var(--ease-out-cubic);
+
   @supports (backdrop-filter: blur(1px)) {
     background-color: rgba(152, 152, 166, 0.125);
     backdrop-filter: blur(2px);
   }
-
-  transition: opacity 0.3s var(--ease-out-cubic);
 
   &:hover {
     opacity: 1 !important;

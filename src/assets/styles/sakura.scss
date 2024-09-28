@@ -23,6 +23,8 @@
   --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
   --default-ease-with-timings: 0.3s var(--ease-out-cubic);
 
+  color-scheme: light dark;
+
   @media (prefers-color-scheme: dark) {
     $color-headings: #ececec;
 
@@ -33,8 +35,6 @@
     --color-headings: #{$color-headings};
     --color-text: #{color.adjust($color-headings, $lightness: -15%)};
   }
-
-  color-scheme: light dark;
 }
 
 @mixin word-wrap() {

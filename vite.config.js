@@ -162,6 +162,15 @@ export default defineConfig(async () => {
       },
     },
 
+    css: {
+      preprocessorMaxWorkers: true,
+      preprocessorOptions: {
+        scss: {
+          api: 'modern',
+        },
+      },
+    },
+
     optimizeDeps: {
       include: ['animejs', '@unhead/vue'],
     },
